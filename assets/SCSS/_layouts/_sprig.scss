@@ -1,0 +1,14 @@
+.sprig-component {
+  //@extend .grid;
+  .button, #replace {
+    grid-column: 1/ -1;
+  }
+}
+.no-entries {
+  background: var(--primary);
+  color: var(--light);
+  padding: var(--s1);
+  text-align: center;
+  grid-column: 1/-1;
+  margin-top: 0;
+}

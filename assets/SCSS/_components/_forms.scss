@@ -1,0 +1,170 @@
+form {
+  &.hideLabels {
+    .label {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+  }
+}
+
+input, textarea, select {
+  background-color: var(--light-main);
+  border: 1px solid var(--base-grey);
+  padding: var(--s1);
+  color: var(--dark-main);
+  width: 100%;
+  border-radius: 4px;
+
+  &:focus, &:active {
+    border-color: var(--tertiary-main);
+  }
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #DFE1DC;
+  opacity: 1; /* Firefox */
+}
+
+#subjectId {
+  appearance: none;
+  padding-right: 2em;
+  // The select element is set to required
+  // as long as the selected options value
+  // is empty the element is not valid.
+  &:invalid {
+    color: #DFE1DC;
+  }
+
+  // Styling for browsers which do support
+  // styling select option elements directly
+  [disabled] {
+    color: #DFE1DC;
+  }
+
+  option {
+    color: var(--dark-main);
+  }
+}
+
+input[type="submit"] {
+  //background-color: var(--tertiary-main);
+  //color: var(--primary-main);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  max-width: calc(var(--measure) / 3);
+  margin: auto;
+}
+
+footer {
+  .textBlock {
+    label{
+      //font-size: clamp(var(--f0), 2vw, var(--f0));
+    }
+    input{
+      padding: var(--s-2);
+    }
+    input[type="submit"] {
+      max-width: unset;
+      color: var(--light-main)!important;
+
+    }
+  }
+}
+
+select {
+  /* reset */
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--tertiary-main) 50%),
+  linear-gradient(135deg, var(--tertiary-main) 50%, transparent 50%);
+  background-position: calc(100% - 20px) calc(1em + 10px),
+  calc(100% - 15px) calc(1em + 10px);
+  background-size: 5px 5px,
+  5px 5px,
+  1px 1.5em;
+  background-repeat: no-repeat;
+
+  &:focus {
+
+  }
+
+  option {
+    &:disabled {
+      color: rgb(118, 118, 118);
+    }
+  }
+}
+
+form {
+  input, select {
+    display: block;
+  }
+
+  label {
+
+  }
+
+  ul.errors, .notice-wrapper {
+    background: var(--base-red);
+    margin-top: var(--s1);
+
+    li {
+      color: var(--light-main);
+      padding: var(--s-1) var(--s4);
+      margin: 0;
+    }
+  }
+}
+
+.notice-wrapper {
+  .message {
+    padding: var(--s-1) var(--s4);
+    color: var(--light-main);
+
+    &.error {
+      background: var(--base-red);
+    }
+
+    &.notice {
+      background: var(--base-green);
+    }
+  }
+}
+
+.notice, {
+  background: var(--light-main);
+  padding: var(--s-1) var(--s4);
+
+  * {
+    color: var(--base-red);
+  }
+
+  h4 {
+    margin: 0;
+    text-align: center;
+
+    &.message {
+      &.notice {
+        color: var(--base-green);
+      }
+
+      &.error {
+        color: var(--base-red);
+      }
+    }
+  }
+}
+
+input#targetRobotsWithTemptingHoney {
+  display: none;
+}

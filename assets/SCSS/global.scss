@@ -1,0 +1,15 @@
+/* ------------------------------------
+	Vendor
+-------------------------------------- */
+@use '../../node_modules/slick-carousel/slick/slick-theme.scss';
+@use '../../node_modules/slick-carousel/slick/slick.scss' ;
+
+@forward '_vendor/index';
+@forward '_utilities/index';
+@forward "_base/index";
+@forward "_layouts/index";
+@forward "_components/index";
+@forward "_woocommerce/index";
+
+@import url('https://use.fontawesome.com/releases/v5.12.1/css/all.css');
+

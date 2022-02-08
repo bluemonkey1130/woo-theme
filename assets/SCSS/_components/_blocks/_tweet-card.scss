@@ -1,0 +1,65 @@
+.tweet-card {
+  figure {
+    overflow: hidden;
+    height: 200px;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  > .stack {
+    align-items: flex-end;
+
+    > .title {
+      display: inline-flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-bottom: var(--s1);
+      border-bottom: 1px solid var(--dark-main);
+      h4 {
+        margin-bottom: 0;
+      }
+
+      > .info {
+        p {
+          margin-bottom: 0;
+          //word-break: break-all;
+          a {
+            text-decoration: none;
+
+          }
+        }
+      }
+    }
+  }
+}
+
+.tweet-card-popup {
+  div {
+    img {
+    }
+  }
+  .stack {
+    > .info {
+      display: inline-flex;
+      width: 100%;
+      justify-content: space-between;
+      p {
+        margin-bottom: 0;
+        border-bottom: 1px solid var(--dark-main);
+
+        a {
+          text-decoration: none;
+
+        }
+      }
+    }
+
+    a {
+      margin-top: auto;
+    }
+  }
+}

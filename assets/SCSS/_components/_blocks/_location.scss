@@ -1,0 +1,42 @@
+.map-wrapper {
+  display: inherit;
+  .pin-info{
+    //padding-bottom: var(--s3);
+    text-align: center;
+    *{
+      max-width: unset;
+    }
+  }
+  .map {
+    border-radius: var(--image-border-radius);
+
+    &:after {
+      content: '';
+      padding-bottom: 52%;
+    }
+  }
+
+  &.small {
+    .map {
+      min-height: 300px;
+    }
+  }
+
+  &.medium {
+    .map {
+      min-height: 500px;
+    }
+  }
+
+  &.large {
+    .map {
+      min-height: 600px;
+    }
+  }
+
+  &.extraLarge {
+    .map {
+      min-height: 800px;
+    }
+  }
+}

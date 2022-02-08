@@ -1,0 +1,12 @@
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+//$color-primary: #16498a;
+//$color-primary-shade: #566d98;
+//$color-secondary: #0E3B93;
+//$color-secondary-shade: #2374ab;
+//$color-tertiary: #F18366;
+//$color-quaternary: #A44C35;
+//$color-dark: #1a1a1a;
+//$color-grey: #c4c4c4;
+//$color-light: #f3f3f3;

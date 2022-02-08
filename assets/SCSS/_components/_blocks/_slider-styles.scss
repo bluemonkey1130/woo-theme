@@ -1,0 +1,500 @@
+@use '../../_utilities/_mixins/media-query' as *;
+@use "../../_abstracts/colours";
+
+.slick-arrow {
+  height: 100%;
+  top: 0;
+  transform: none;
+
+  &:active {
+    transform: none;
+  }
+
+  &:before {
+    color: var(--dark-main);
+  }
+}
+
+.gridRow {
+  &.slider {
+    .slick-arrow {
+      transform: translate(0, 0);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0;
+
+      &:before {
+        //color: var(--base-body);
+      }
+
+      &.slick-prev {
+        left: -80px;
+      }
+
+      &.slick-next {
+        right: -80px;
+      }
+
+      @include mq(tablet) {
+        &.slick-prev {
+          left: -40px;
+        }
+        &.slick-next {
+          right: -40px;
+        }
+      }
+      @include mq(mobile) {
+        &.slick-prev {
+          left: -20px;
+        }
+        &.slick-next {
+          right: -20px;
+        }
+      }
+    }
+    &.default{
+      .slick-arrow {
+        top: 50%;
+        height: 40px;
+      }
+    }
+    &.bottom {
+      .slick-dotted {
+        bottom: 20px;
+
+        .slick-dots {
+          padding: 6px 0;
+        }
+      }
+
+      &:not(.slick-dotted) {
+        padding-bottom: var(--s6);
+      }
+
+      .slick-arrow {
+        &.slick-prev {
+          top: unset;
+          bottom: 0;
+          left: 0;
+          @include mq(tablet) {
+            margin-left: 0;
+          }
+        }
+
+        &.slick-next {
+          top: unset;
+          bottom: 0;
+          right: 0;
+          @include mq(tablet) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    @include mq(medium-large) {
+      &.slick-dotted {
+        bottom: 20px;
+        padding-bottom: 0 !important;
+
+        .slick-dots {
+          padding: 6px 0;
+        }
+      }
+
+      &:not(.slick-dotted) {
+        padding-bottom: var(--s6);
+      }
+
+      .slick-arrow {
+        &.slick-prev {
+          top: unset;
+          bottom: 0;
+          left: 0;
+          @include mq(tablet) {
+            margin-left: 0;
+          }
+        }
+
+        &.slick-next {
+          top: unset;
+          bottom: 0;
+          right: 0;
+          @include mq(tablet) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    &.slick-dotted {
+
+    }
+
+    @each $color, $shades in colours.$colors {
+      @each $shade, $value in $shades {
+        @if $shade == main {
+          &.#{$color}-#{$shade} {
+            .slick-arrow {
+              background-color: var(--#{$color}-#{$shade});
+              padding: var(--s3);
+              margin-bottom: 0;
+              height: 40px;
+              + .slick-dots {
+                padding: var(--s3);
+              }
+
+              &:before {
+                color: var(--#{$color}-invert);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.slick-slider {
+  .slick-list {
+    width: 100%;
+
+    .slick-track {
+      .slick-slide {
+        height: auto;
+
+        .inner {
+        }
+
+        &:focus {
+
+        }
+      }
+    }
+  }
+
+  .slick-arrow {
+    z-index: 3;
+
+    &:active {
+      transform: none;
+    }
+
+    &:before {
+      display: inline;
+      font-family: 'Font Awesome 5 Free';
+      content: '  \f054';
+      font-weight: 900;
+      line-height: 0;
+      font-size: var(--s2);
+      @include mq(large-tablet) {
+        font-size: var(--s2);
+      }
+      @include mq(phablet) {
+        font-size: var(--s1);
+      }
+    }
+
+    &.slick-next {
+      right: -50px;
+    }
+
+    &.slick-prev {
+      left: -50px;
+
+      &:before {
+        display: inline-block;
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &.slick-dotted {
+    margin-bottom: 0;
+    padding-bottom: var(--s3);
+    @include mq(mobile) {
+      padding-bottom: 0 !important;
+      .slick-dots {
+        padding: var(--s1);
+      }
+    }
+
+    .slick-dots {
+      grid-row: 2;
+      padding: var(--s2) 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+      top: unset;
+      bottom: unset;
+      margin: 0;
+
+      li {
+        border-radius: 50%;
+        width: var(--s-1);
+        height: var(--s-1);
+        margin: 0 var(--s-2);
+        padding: 0;
+
+        button {
+          &:before {
+            font-size: var(--s-1);
+            //color: var(--primary-main);
+          }
+        }
+
+        &.slick-active {
+
+        }
+      }
+    }
+  }
+
+  @include mq(mobile) {
+    .slick-list {
+      margin: 0 !important;
+
+      .slick-slide {
+        margin: 0 !important;
+      }
+    }
+  }
+
+  //&.grid-gap-000 {
+  //  .slick-list {
+  //    margin: 0;
+  //
+  //    .slick-slide {
+  //      margin: 0;
+  //    }
+  //  }
+  //}
+  //
+  //.grid-gap-100 {
+  //  .slick-list {
+  //    margin: 0 calc(var(--s-neg1/ 2));
+  //
+  //    .slick-slide {
+  //      margin: 0 calc(var(--s1) / 2);
+  //    }
+  //  }
+  //}
+  //
+  //.grid-gap-200 {
+  //  .slick-list {
+  //    margin: 0 calc(var(--s-neg2) / 2);
+  //
+  //    .slick-slide {
+  //      margin: 0 calc(var(--s2) / 2);
+  //    }
+  //  }
+  //}
+  //
+  //.grid-gap-300 {
+  //  .slick-list {
+  //    margin: 0 calc(var(--s-neg3) / 2);
+  //
+  //    .slick-slide {
+  //      margin-left: calc(var(--s3) / 2);
+  //      margin-right: calc(var(--s3) / 2);
+  //    }
+  //  }
+  //}
+  //
+  //&.grid-gap-400 {
+  //  .slick-list {
+  //    margin: 0 calc(var(--s-neg4) / 2);
+  //
+  //    .slick-slide {
+  //      margin: 0 calc(var(--s4) / 2);
+  //    }
+  //  }
+  //}
+  //
+  //&.grid-gap-500 {
+  //  .slick-list {
+  //    margin: 0 calc(var(--s-neg5) / 2);
+  //
+  //    .slick-slide {
+  //      margin: 0 calc(var(--s5) / 2);
+  //    }
+  //  }
+  //}
+  //
+  //&.grid-gap-600 {
+  //  .slick-list {
+  //    margin: 0 calc(var(--s-neg6) / 2);
+  //
+  //    .slick-slide {
+  //      margin: 0 calc(var(--s6) / 2);
+  //    }
+  //  }
+  //}
+  //
+  //&.grid-gap-700 {
+  //  .slick-list {
+  //    margin: 0 calc(var(--s-neg7) / 2);
+  //
+  //    .slick-slide {
+  //      margin: 0 calc(var(--s7) / 2);
+  //    }
+  //  }
+  //}
+
+}
+
+.entries-slider {
+  grid-row: 1;
+  display: inherit;
+  width: 100%;
+  grid-gap: 0;
+
+  &.slick-dotted {
+    grid-template-rows: 1fr 10%;
+  }
+
+
+  @include mq(tablet) {
+    padding: 0 var(--s2);
+  }
+
+  .slick-list {
+    grid-row: 1;
+    margin: 0 calc(-1 * var(--s1));
+    overflow-x: visible;
+    padding: 10px 0 10px 0;
+
+    .slick-track {
+      height: 100%;
+
+      .slick-slide {
+        max-width: unset;
+        display: inline-flex;
+        margin: 0 var(--s1);
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .slick-arrow {
+    width: 60px;
+
+    &:before {
+      display: inline;
+      font-family: 'Font Awesome 5 Free';
+      content: '  \f054';
+      font-weight: 900;
+      padding: 0 5px 5px 0;
+      font-size: var(--s3);
+    }
+
+    &.slick-next {
+      height: 100%;
+      right: -10%;
+
+      &:before {
+        color: var(--primary-main);
+      }
+    }
+
+    &.slick-prev {
+      height: 100%;
+      left: -10%;
+
+      &:before {
+        display: inline-block;
+        transform: rotate(180deg);
+        color: var(--primary-main);
+      }
+    }
+  }
+
+  &.slick-dotted {
+    margin: 0;
+
+    .slick-dots {
+
+    }
+  }
+}
+
+.mobile-slider {
+  padding: 0;
+  @include mq(tablet) {
+    padding: 0 var(--s2);
+  }
+  @include mq(large-tablet) {
+    & ~ button.slick-arrows {
+      display: none;
+    }
+  }
+
+  .slick-list {
+    grid-row: 1;
+    margin: 0 calc(-1 * var(--s1));
+
+    .slick-track {
+
+      > .stack {
+        margin: 0 var(--s1);
+      }
+    }
+  }
+
+  & ~ .slick-arrows {
+    color: var(--primary-main);
+  }
+}
+
+.testimonial-slider.slick-slider {
+  display: grid;
+  grid-template-rows: auto 50px;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  .slick-list {
+    //height: 100%;
+    margin-bottom: var(--s2);
+    grid-column: 1 / span 3;
+
+    .slick-track {
+      //height: 100%;
+
+      .slick-slide {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+        figure {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  button.slick-arrow {
+    position: relative;
+    grid-row: 2;
+    left: 0;
+    right: 0;
+    justify-self: center;
+
+    &.slick-next {
+      grid-column: 3;
+    }
+
+    &.slick-prev {
+      grid-column: 1;
+    }
+  }
+
+  .slick-dots {
+    //grid-row: 2;
+    //grid-column: 2;
+
+  }
+}

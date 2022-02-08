@@ -1,0 +1,96 @@
+{
+    "key": "group_60702db9c6ac2",
+    "title": "Page Settings",
+    "fields": [
+        {
+            "key": "field_60702dbe701f9",
+            "label": "Row Spacing",
+            "name": "space_top",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "gap-top-000": "000",
+                "gap-top-100": "100",
+                "gap-top-200": "200",
+                "gap-top-300": "300",
+                "gap-top-400": "400",
+                "gap-top-500": "500",
+                "gap-top-600": "600",
+                "gap-top-700": "700"
+            },
+            "default_value": "gap-top-300",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_60702e02701fa",
+            "label": "Grid Gap",
+            "name": "grid_gap",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "grid-gap-000": "000",
+                "grid-gap-100": "100",
+                "grid-gap-200": "200",
+                "grid-gap-300": "300",
+                "grid-gap-400": "400",
+                "grid-gap-500": "500",
+                "grid-gap-600": "600",
+                "grid-gap-700": "700"
+            },
+            "default_value": "grid-gap-300",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/page-flexible.php"
+            }
+        ],
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "10"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1643373390
+}

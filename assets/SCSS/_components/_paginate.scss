@@ -1,0 +1,14 @@
+.pagination {
+  text-align: center;
+  grid-column: 1/-1;
+  &>div{
+    button{
+      border: none;
+      background-color: transparent;
+      color: var(--primary-main);
+      cursor: pointer;
+      padding: 0 var(--s1);
+      font-size: var(--s1);
+    }
+  }
+}

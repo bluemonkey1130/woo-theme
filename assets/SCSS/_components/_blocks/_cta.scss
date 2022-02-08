@@ -1,0 +1,37 @@
+@use '../../_utilities/_mixins/media-query' as *;
+
+.cta{
+  padding-top: 0;
+  .label{
+    position: absolute;
+    padding: var(--s-2) var(--s-1);
+  }
+  .text{
+    padding-top: calc(var( --s2) * 2);
+  }
+  .button{
+    align-self: center;
+  }
+  @include mq(tablet) {
+    padding-top: 0!important;
+    padding-bottom: var(--s4);
+    padding-left: var(--s4);
+    padding-right: var(--s4);
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .label{
+      position: relative;
+      margin: 0 auto;
+      display: inline-block;
+      padding: 10px 10px!important;
+    }
+    .text{
+      padding-top:var( --s3);
+      text-align: center;
+      grid-gap: 0;
+    }
+  }
+}

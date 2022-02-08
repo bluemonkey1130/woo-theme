@@ -1,0 +1,105 @@
+header {
+  #mobile-nav {
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    overflow-y: scroll;
+    max-height: 100%;
+    padding-bottom: var(--s2);
+    font-size: 0;
+    top: 80px;
+    grid-template-columns: 1fr 50px;
+    grid-auto-flow: dense;
+    align-content: start;
+    padding-top: var(--s1);
+    transition: opacity 500ms;
+    padding-left: 0!important;
+    padding-right: 0!important;
+
+    a {
+      opacity: 0;
+      color: var(--primary-invert);
+      padding: var(--s1) 0;
+      text-align: center;
+      font-size: var(--s1);
+      justify-content: center;
+      align-items: center;
+      display: inherit;
+      text-decoration: none;
+      grid-column: 1;
+      border-bottom: 1px solid var(--light-main);
+
+      &:nth-last-child(1) {
+        border: none;
+      }
+
+      &.active {
+        font-weight: 800;
+      }
+
+      + button.sub-menu {
+        grid-column: 2/span 1;
+      }
+    }
+
+    &.active {
+      a {
+        transition: opacity 50ms;
+        opacity: 1;
+      }
+
+      button.sub-menu {
+        transition: opacity 50ms;
+        opacity: 1;
+      }
+    }
+
+    button.sub-menu {
+      opacity: 0;
+      grid-column: 2;
+      cursor: pointer;
+      display: flex;
+      width: 100%;
+      font-size: var(--s2);
+      background-color: transparent;
+      color: var(--primary-invert);
+      border-style: none;
+      padding-left: var(--s-2);
+      padding-right: var(--s-2);
+      padding-bottom: var(--s-2);
+      text-align: center;
+      height: 100%;
+      margin: 0;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid var(--light-main);
+
+      &:before {
+        margin: 0 auto;
+        content: '\f078';
+        display: inline;
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+      }
+
+      &.active {
+        &:before {
+          content: '\f077';
+        }
+      }
+    }
+
+    .sub-nav {
+
+      margin: 0;
+      display: none;
+      //background: rgba(255, 255, 255, 0.2);
+      border-top: 1px solid var(--light-main);
+      border-bottom: 1px solid var(--light-main);
+    }
+  }
+}
+

@@ -1,0 +1,122 @@
+.social-slider {
+  overflow: visible;
+
+  .slick-arrow {
+    opacity: 1;
+    width: 200px;
+
+    &:before{
+      color: var(--light-main);
+      font-size: var(--s4);
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.slick-next {
+      right: -200px !important;
+      &:before{
+        display: block;
+        color: var(--light-main);
+        padding-bottom: 60px;
+
+      }
+    }
+
+    &.slick-prev {
+      left: -200px !important;
+      &:before{
+        display: block;
+        color: var(--primary-main);
+        padding-top: 60px;
+
+      }
+    }
+  }
+
+  .slick-list {
+    overflow: visible;
+    clip-path: inset(0px -100% 0px 0px);
+    .slick-slide{
+      position: relative;
+      &.slick-active{
+        &:after{
+          opacity: 0;
+          transition: all ease-in 200ms;
+        }
+      }
+      &:after{
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: var(--dark-main);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 200;
+        opacity: 0.5;
+        transition: all ease-in 200ms;
+      }
+    }
+  }
+}
+
+.insta-tile {
+  display: grid;
+  grid-template-rows:1fr;
+  grid-template-columns:1fr;
+  justify-items: center;
+  align-items: center;
+  text-decoration: none;
+  cursor: zoom-in;
+  z-index: 99999;
+  position: relative;
+  img, p {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  p {
+    color: var(--light);
+    font-size: clamp(var(--s1), 8vw, var(--s3));
+    opacity: 0;
+  }
+
+  p, p span {
+    padding: var(--s-1);
+    color: var(--light-main);
+  }
+
+  &:hover {
+    img {
+      filter: blur(2px);
+    }
+
+    p {
+      opacity: 1;
+      z-index: 4;
+    }
+  }
+}
+
+.instapopup {
+  position: relative;
+  background: #FFF;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+
+  p span {
+    padding: var(--s-1) var(--s-1) 0 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 0 var(--s-1) var(--s-1);
+
+    &:nth-last-child(1) {
+      padding-top: 0 !important;
+    }
+  }
+}

@@ -1,0 +1,189 @@
+@use "../_abstracts/font-scale";
+
+body {
+  font-family: var(--body-font);
+  font-weight: var(--body-weight);
+  //font-size: var(--f0);
+}
+
+.heading-font {
+  font-family: var(--heading-font);
+}
+
+.body-font {
+  font-family: var(--body-font);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  min-height: 0.000001vw;
+  color: var(--base-heading);
+  line-height: 1.2;
+  margin-bottom: var(--f2);
+  font-family: var(--heading-font);
+  font-weight: var(--heading-weight);
+  max-width: var(--max-character-length);
+}
+
+//PLEASE NOTE ALL THESE ARE OVERIDDEN BY THEME SETTINGS -> located in templates
+h1, .h1 {
+  font-size: clamp(var(--f3), 10vw, var(--f5));
+}
+
+h2, .h2 {
+  font-size: clamp(var(--f2), 8vw, var(--f4));
+
+}
+
+h3, .h3 {
+  font-size: clamp(var(--f1), 5vw, var(--f3));
+}
+
+h4, .h4 {
+  font-size: clamp(var(--f0), 3vw, var(--f2))
+}
+
+h5, .h5 {
+  font-size: clamp(var(--f0), 2vw, var(--f1));
+}
+
+h6, .h6 {
+  font-size: clamp(var(--f0), 1vw, var(--f0));
+  font-weight: 100;
+}
+
+html.safari-12, html.safari-13 {
+  h1, .h1 {
+    font-size: min(max(var(--f3), 10vw), var(--f5));
+  }
+
+  h2, .h2 {
+    font-size: min(max(var(--f2), 8vw), var(--f4));
+  }
+
+  h3, .h3 {
+    font-size: min(max(var(--f1), 5vw), var(--f3));
+  }
+
+  h4, .h4 {
+    font-size: clamp(var(--f0), 3vw, var(--f2))
+  }
+
+  h5, .h5 {
+    font-size: clamp(var(--f0), 2vw, var(--f1));
+  }
+
+  h6, .h6 {
+    font-size: clamp(var(--f0), 1vw, var(--f0));
+  }
+}
+
+a {
+  color: var(--base-link-colour);
+}
+
+p {
+  font-size: clamp(var(--f0), 2vw, var(--f0));
+  margin-bottom: var(--f1);
+  max-width: var(--max-character-length);
+  color: var(--base-body);
+
+}
+
+p[style*="text-align: center"] {
+  max-width: unset;
+}
+
+div:not(#wpadminbar) {
+  //ol, ul {
+  //  color: var(--base-body);
+  //  padding-left: 13px;
+  //  margin-bottom: 0.8rem !important;
+  //
+  //  li {
+  //    color: var(--base-body);
+  //    margin-bottom: 0.5rem;
+  //
+  //    p {
+  //      margin: 0;
+  //    }
+  //  }
+  //}
+}
+
+blockquote {
+  font-size: clamp(var(--f0), 5vw, var(--f2));
+  color: var(--base-heading);
+  font-family: var(--heading-font);
+
+  &:before, &:after {
+    color: var(--tertiary-main);
+    font-size: var(--s2);
+
+  }
+
+  &:before {
+    content: "\201C";
+  }
+
+  &:after {
+    content: "\201D";
+  }
+}
+
+strong {
+  font-weight: 600;
+}
+
+cite {
+  color: var(--tertiary-main) !important;
+  font-family: var(--body-font);
+  font-style: normal;
+  font-size: var(--f1);
+  margin-bottom: 0;
+
+  & + p {
+    margin-top: 0 !important;
+    max-width: unset;
+  }
+}
+
+hr {
+  border-top: var(--s-6) solid var(--base-grey);
+  width: 100%;
+}
+
+a {
+  text-decoration: underline;
+}
+
+address {
+  font-style: normal;
+}
+
+td {
+  border: 1px solid;
+  padding: 1rem;
+}
+
+#checkout-radio {
+  .woocommerce-input-wrapper {
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    align-items: center;
+
+    label {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+input[type=checkbox] {
+  display: inline-block;
+}
+
+input[type=radio] {
+  display: inline-block;
+}

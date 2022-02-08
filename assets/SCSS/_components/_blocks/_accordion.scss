@@ -1,0 +1,106 @@
+@use "../../_abstracts/colours";
+.accordion {
+  .accordion-block {
+    padding: var(--s1) 0;
+    border-top-width: var(--s-4);
+    border-top-style: solid;
+    transition: background-color .3s, transform .3s;
+
+    &:nth-last-child(1) {
+      border-bottom-width: var(--s-4);
+      border-bottom-style: solid;
+    }
+
+    &[class*="bg"] {
+      padding: var(--s2);
+    }
+
+    &.active {
+      .trigger {
+        i {
+          &.icon-default {
+            transition: opacity .3s, transform .3s;
+            transform: scale(.5);
+            opacity: 0;
+          }
+
+          &.icon-active {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      }
+      @each $color, $shades in colours.$colors {
+        @each $shade, $value in $shades {
+          @if $shade == main {
+            &.bg-#{$color}-open{
+              background-color: var(--#{$color}-main);
+            }
+            &.color-#{$color}-open {
+              border-color: var(--#{$color}-main);
+
+              *,.fas:before,.fa:before {
+                color: var(--#{$color}-main);
+              }
+              + .accordion-block{
+                border-top-color: var(--#{$color}-main);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .trigger {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr;
+    align-items: center;
+    margin-bottom: 0;
+    cursor: pointer;
+    text-align: left;
+
+    i {
+      grid-column: 2;
+      grid-row: 1;
+      font-size: var(--s1);
+      padding: var(--s-1);
+      margin-top: 0;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+
+      &.icon-default {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      &.icon-active {
+        transition: opacity .3s, transform .3s;
+        transform: scale(.5);
+        opacity: 0;
+      }
+    }
+
+    &.active {
+    }
+
+    &.box {
+      padding: var(--s-1);
+
+      & + div {
+        padding: var(--s-1);
+      }
+
+    }
+
+  }
+
+  .draw {
+    span {
+      font-family: var(--body-font);
+    }
+  }
+}
