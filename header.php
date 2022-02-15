@@ -11,6 +11,7 @@
     <meta charset="<?php bloginfo('charset'); ?>"/>
     <meta name="viewport" content="width=device-width"/>
     <?php wp_head(); ?>
+    <?php get_template_part('inline-css/_space'); ?>
     <?php get_template_part('inline-css/_fonts'); ?>
     <?php get_template_part('inline-css/_colour'); ?>
     <?php get_template_part('inline-css/_button'); ?>

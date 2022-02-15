@@ -118,7 +118,7 @@
                         {
                             "key": "field_61e17f74016a3",
                             "label": "Min",
-                            "name": "min_size",
+                            "name": "min",
                             "type": "number",
                             "instructions": "",
                             "required": 0,
@@ -139,7 +139,7 @@
                         {
                             "key": "field_61e17f74016a9",
                             "label": "Max",
-                            "name": "max_size",
+                            "name": "max",
                             "type": "number",
                             "instructions": "",
                             "required": 0,
@@ -271,7 +271,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": 3,
+                            "default_value": 4,
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
@@ -393,7 +393,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": 2,
+                            "default_value": 3,
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
@@ -515,7 +515,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": 1,
+                            "default_value": 2,
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
@@ -1593,5 +1593,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1643196968
+    "modified": 1644505767
 }

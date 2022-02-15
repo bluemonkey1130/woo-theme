@@ -1,33 +1,40 @@
 <?php
 $flexFields = get_field('row', $post->ID);
-$rowSpace = get_field('space_top', $post->ID);
-$gridGap = get_field('grid_gap', $post->ID);
+$pageRowSpace = get_field('space_top', $post->ID);
+$pageGridGap = get_field('grid_gap', $post->ID);
 
-if (have_rows('row')):
+if (have_rows('row')) {
 
     while (have_rows('row')) : the_row();
+        $rowRowSpace = get_sub_field('space_top');
+        if ($rowRowSpace == 'default') {
+            $rowSpace = $pageRowSpace;
+        } else {
+            $rowSpace = $rowRowSpace;
+        }
+        $rowGridGap = get_sub_field('grid_gap');
+        if ($rowGridGap == 'default') {
+            $gridGap = $pageGridGap;
+        } else {
+            $gridGap = $rowGridGap;
+        }
 
-        if (get_row_layout() == 'grid_layout'): ?>
-            <?php
-            if ($rowSpace == 'default') {
-                $rowSpace = get_sub_field('space_top');
-            }
-            if ($gridGap == 'default') {
-                $gridGap = get_sub_field('grid_gap');
-            }
-            $rowColour = get_sub_field('row_colour');
-            $paddingTop = get_sub_field('padding_top');
-            $paddingBottom = get_sub_field('padding_bottom');
-            $rowLayout = get_sub_field('row_layout');
-            $rowWidth = get_sub_field('row_width');
-            ?>
-            <?php if (have_rows('content')): ?>
+        $rowColour = get_sub_field('row_colour');
+        $paddingTop = get_sub_field('padding_top');
+        $paddingBottom = get_sub_field('padding_bottom');
+        $rowWidth = get_sub_field('row_width');
+        $rowLayout = get_sub_field('row_layout');
+        $layout = get_row_layout();
+
+        if ($layout == 'grid_layout') {
+
+            if (have_rows('content')) { ?>
                 <section
-                        class="grid-row <?php echo $rowSpace . ' ' . $rowColour . ' ' . $paddingTop . ' ' . $paddingBottom ?>">
-                    <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap ?>">
+                        class="grid-row <?php echo $rowSpace . ' ' . $rowColour . ' ' . $paddingTop . ' ' . $paddingBottom . ' ' . sanitize_title($layout) ?>">
+                    <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>">
                         <?php while (have_rows('content')) : the_row(); ?>
                             <?php $label = get_sub_field('acf_fc_layout'); ?>
-                            <?php if (get_row_layout() == 'text'): ?>
+                            <?php if (get_row_layout() == 'text') { ?>
                                 <?php
                                 $text = get_sub_field('text_content');
                                 $alignment = get_sub_field('alignment');
@@ -69,7 +76,7 @@ if (have_rows('row')):
                                     </div>
                                 </div>
 
-                            <?php elseif (get_row_layout() == 'image'): ?>
+                            <?php } elseif (get_row_layout() == 'image') { ?>
                                 <figure class="imageBlock <?php ?>">
                                     <?php
                                     $image = get_sub_field('image_content');
@@ -77,7 +84,8 @@ if (have_rows('row')):
                                     echo wp_get_attachment_image($image['id'], $imageCrop, false, ["class" => "", "alt" => $image['alt']]);
                                     ?>
                                 </figure>
-                            <?php elseif (get_row_layout() == 'video'): ?>
+
+                            <?php } elseif (get_row_layout() == 'video') { ?>
                                 <?php
                                 $video = get_sub_field('video_content', FALSE);
                                 if ($video) {
@@ -89,21 +97,30 @@ if (have_rows('row')):
                                     <img src="https://img.youtube.com/vi/<?php echo $vid; ?>/0.jpg" alt="video">
                                     <i class="fas fa-play-circle"></i>
                                 </div>
-                            <?php elseif (get_row_layout() == 'location'): ?>
+
+                            <?php } elseif (get_row_layout() == 'location') { ?>
                                 <div class="map-wrapper" style="width: 100%; height: 500px;">
                                     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
                                     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNIVftYn5q6tPwVlNhQ5NCN1dEaqGfhyA&callback=initmultipleMaps&libraries=&v=beta&map_ids=745fe24ebe33e9f4"
                                             defer></script>
-                                    <?php $location = get_sub_field('location_content'); ?>
+                                    <?php
+                                    $location = get_sub_field('location_content');
+                                    $iconColor = get_sub_field('icon_colour');
+                                    ?>
                                     <div class="map">
                                         <?php echo
                                             $location['lat'] . ',' .
                                             $location['lng'] . ',' .
-                                            $location['zoom']; ?>
+                                            $location['zoom'] . ',' .
+                                            'AIzaSyDNIVftYn5q6tPwVlNhQ5NCN1dEaqGfhyA' . ', ' .
+                                            $iconColor . ',' .
+                                            $location['address'] . ',';
+                                        ?>
                                     </div>
                                 </div>
-                            <?php elseif (get_row_layout() == 'accordion'): ?>
-                                <?php if (have_rows('accordion_repeater')): ?>
+
+                            <?php } elseif (get_row_layout() == 'accordion') { ?>
+                                <?php if (have_rows('accordion_repeater')) { ?>
                                     <div class="accordionBlock">
                                         <div class="accordion">
                                             <?php while (have_rows('accordion_repeater')) : the_row(); ?>
@@ -123,29 +140,109 @@ if (have_rows('row')):
                                             <?php endwhile; ?>
                                         </div>
                                     </div>
-                                <?php else :
-
-                                endif;
-                                ?>
-
-
-
-
-                            <?php endif;
-
+                                <?php } ?>
+                            <?php } elseif (get_row_layout() == 'embed') { ?>
+                                <div>
+                                    <?php
+                                    $type = get_sub_field('embed_type');
+                                    $raw = get_sub_field('raw_embed');
+                                    $shortCode = get_sub_field('shortcode_embed');
+                                    if ($type == 'raw_embed') {
+                                        echo $raw;
+                                    } elseif ($type == 'shortcode_embed') {
+                                        echo do_shortcode($shortCode);
+                                    }
+                                    ?>
+                                </div>
+                            <?php }
                         endwhile; ?>
                     </div>
                 </section>
-            <?php else :
+            <?php }
 
-            endif;
+        } elseif ($layout == 'section_layout') {
 
-        elseif (get_row_layout() == 'download'):
+            if (have_rows('content')) { ?>
+                <section
+                        class="grid-row <?php echo $rowSpace . ' ' . $rowColour . ' ' . $paddingTop . ' ' . $paddingBottom . ' ' . sanitize_title($layout) ?>">
+                    <?php while (have_rows('content')) : the_row(); ?>
+                        <?php $label = get_sub_field('acf_fc_layout'); ?>
 
-        endif;
+                        <?php if (get_row_layout() == 'products') { ?>
+
+                            <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap . ' ' . $label; ?>">
+                                <?php $selection = get_sub_field('selection_choice');
+
+                                if ($selection == 'all') {
+                                    $products = new WP_Query(array(
+                                        'post_type' => 'product',
+                                        'showposts' => -1,
+                                        'order_by' => 'menu_order',
+                                    ));
+                                    $productLoop = $products->posts;
+
+                                } elseif ($selection == 'categories') {
+                                    $catID = get_sub_field('product_categories');
+                                    $products = new WP_Query(array(
+                                        'post_type' => 'product',
+                                        'showposts' => -1,
+                                        'order_by' => 'menu_order',
+                                        'tax_query' => array_merge(array(
+                                            'relation' => 'AND',
+                                            array(
+                                                'taxonomy' => 'product_cat',
+                                                'terms' => $catID[0],
+                                                'field' => 'term_taxonomy_id'
+                                            )
+                                        ))
+                                    ));
+                                    $productLoop = $products->posts;
+
+                                } elseif ($selection == 'custom') {
+                                    $productLoop = get_sub_field('custom');
+                                }
+                                if ($productLoop) {
+                                    foreach ($productLoop as $key => $post) { ?>
+                                        <div class="stack card">
+                                            <figure>
+                                                <?php
+                                                $thumbnailID = get_post_thumbnail_id($post->ID);
+                                                if ($thumbnailID) {
+                                                    echo wp_get_attachment_image($thumbnailID, 'shop_thumbnail', false, ["class" => "", "alt" => $post->post_title]);
+                                                } else {
+                                                    echo wc_placeholder_img();
+                                                }
+                                                ?>
+                                                <a class="abs" href="<?php the_permalink(); ?>"></a>
+                                            </figure>
+
+                                            <h4><?php echo $post->post_title; ?></h4>
+                                            <?php $_product = wc_get_product($post->ID); ?>
+                                            <p class="color-base-green"><?php echo wc_price($_product->get_price()) . ' /Per Day'; ?></p>
+                                            <?php if ($post->post_excerpt) { ?>
+                                                <?php shorten_product_excerpt() ?>
+                                            <?php } ?>
+
+                                            <a href="<?php the_permalink(); ?>" class="button primary">Read More</a>
+
+                                        </div>
+                                        <?php
+
+                                    }
+                                }
+
+                                wp_reset_postdata();
+                                ?>
+                            </div>
+                            <?php
+                        }
+
+                    endwhile; ?>
+
+                </section>
+            <?php }
+        }
 
     endwhile;
 
-else :
-
-endif;
+}

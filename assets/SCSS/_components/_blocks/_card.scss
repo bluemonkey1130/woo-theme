@@ -5,11 +5,24 @@ section[class*="bg"] .card {
 }
 
 .card {
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+
+
+
   img, figure {
     border-radius: 0;
-    width: 100%;
+    //width: 100%;
 
   }
+
+    .button{
+      margin-top: auto;
+    }
+
 
   &[class*="border-"] {
     border-width: 1px;
@@ -36,8 +49,6 @@ section[class*="bg"] .card {
       margin-right: var(--s1);
     }
   }
-
-
 
   &.rounded {
     &-5 {

@@ -34,9 +34,50 @@ $fontSizes = get_field('font_sizes', 'option');
 
     <?php if($customSizes == true){ ?>
     h1, .h1 {
-        font-size: clamp(var(--f<?php echo $fontSizes['h1']['min_size'] ?>), <?php echo $fontSizes['h1']['preferred_size'] ?>, var(--f<?php echo $fontSizes['h1']['max_size'] ?>));
+        font-size: clamp(var(--f<?php echo $fontSizes['h1']['min'] ?>), <?php echo $fontSizes['h1']['preferred_size'] ?>, var(--f<?php echo $fontSizes['h1']['max'] ?>));
         font-family: var(--<?php echo $fontSizes['h1']['font_family'] ?>);
         line-height: <?php echo $fontSizes['h1']['line_height'] ?>;
+    }
+
+    h2, .h2 {
+        font-size: clamp(var(--f<?php echo $fontSizes['h2']['min'] ?>), <?php echo $fontSizes['h2']['preferred_size'] ?>, var(--f<?php echo $fontSizes['h2']['max'] ?>));
+        font-family: var(--<?php echo $fontSizes['h2']['font_family'] ?>);
+        line-height: <?php echo $fontSizes['h2']['line_height'] ?>;
+    }
+    h3, .h3 {
+        font-size: clamp(var(--f<?php echo $fontSizes['h3']['min'] ?>), <?php echo $fontSizes['h3']['preferred_size'] ?>, var(--f<?php echo $fontSizes['h3']['max'] ?>));
+        font-family: var(--<?php echo $fontSizes['h3']['font_family'] ?>);
+        line-height: <?php echo $fontSizes['h3']['line_height'] ?>;
+    }
+    h4, .h4 {
+        font-size: clamp(var(--f<?php echo $fontSizes['h4']['min'] ?>), <?php echo $fontSizes['h4']['preferred_size'] ?>, var(--f<?php echo $fontSizes['h4']['max'] ?>));
+        font-family: var(--<?php echo $fontSizes['h4']['font_family'] ?>);
+        line-height: <?php echo $fontSizes['h4']['line_height'] ?>;
+    }
+    h5, .h6 {
+        font-size: clamp(var(--f<?php echo $fontSizes['h']['min'] ?>), <?php echo $fontSizes['h5']['preferred_size'] ?>, var(--f<?php echo $fontSizes['h5']['max'] ?>));
+        font-family: var(--<?php echo $fontSizes['h5']['font_family'] ?>);
+        line-height: <?php echo $fontSizes['h5']['line_height'] ?>;
+    }
+    h6, .h6 {
+        font-size: clamp(var(--f<?php echo $fontSizes['h6']['min'] ?>), <?php echo $fontSizes['h6']['preferred_size'] ?>, var(--f<?php echo $fontSizes['h6']['max'] ?>));
+        font-family: var(--<?php echo $fontSizes['h6']['font_family'] ?>);
+        line-height: <?php echo $fontSizes['h6']['line_height'] ?>;
+    }
+    p, .p {
+        font-size: clamp(var(--f<?php echo $fontSizes['p']['min'] ?>), <?php echo $fontSizes['p']['preferred_size'] ?>, var(--f<?php echo $fontSizes['p']['max'] ?>));
+        font-family: var(--<?php echo $fontSizes['p']['font_family'] ?>);
+        line-height: <?php echo $fontSizes['p']['line_height'] ?>;
+    }
+    blockquote, .blockquote {
+        font-size: clamp(var(--f<?php echo $fontSizes['blockquote']['min'] ?>), <?php echo $fontSizes['blockquote']['preferred_size'] ?>, var(--f<?php echo $fontSizes['blockquote']['max'] ?>));
+        font-family: var(--<?php echo $fontSizes['blockquote']['font_family'] ?>);
+        line-height: <?php echo $fontSizes['blockquote']['line_height'] ?>;
+    }
+    label, .label {
+        font-size: clamp(var(--f<?php echo $fontSizes['label']['min'] ?>), <?php echo $fontSizes['label']['preferred_size'] ?>, var(--f<?php echo $fontSizes['label']['max'] ?>));
+        font-family: var(--<?php echo $fontSizes['label']['font_family'] ?>);
+        line-height: <?php echo $fontSizes['label']['line_height'] ?>;
     }
 
     <?php

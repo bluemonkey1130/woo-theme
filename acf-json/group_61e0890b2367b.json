@@ -710,6 +710,15 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_620417b72e86c": {
+                    "key": "layout_620417b72e86c",
+                    "name": "cart",
+                    "label": "Cart",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
                 }
             },
             "button_label": "Add Block",
@@ -911,5 +920,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1643115545
+    "modified": 1644435426
 }

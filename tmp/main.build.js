@@ -244,6 +244,18 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 'use strict';
 
 (function ($) {
+  $('.isoproducts').isotope({
+    itemSelector: '.grid-item',
+    masonry: {
+      "gutter": 30
+    }
+  });
+})(jQuery); // Fully reference jQuery after this point.
+
+
+'use strict';
+
+(function ($) {
   // This will create a single gallery from all elements that have class "gallery-item"
   $('.gallery-item').magnificPopup({
     type: 'image',
@@ -561,21 +573,23 @@ function C(i) {
       $carousel.slick({
         adaptiveHeight: true
       });
-    });
-    $('.products.columns-4').each(function (index, sliderWrap) {
-      var $carousel = $(this);
-      $carousel.slick({
-        slidesToShow: 3,
-        adaptiveHeight: true,
-        responsive: [{
-          breakpoint: 767,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }
-        }]
-      });
-    });
+    }); // $('.products.columns-4').each(function (index, sliderWrap) {
+    //     let $carousel = $(this);
+    //     $carousel.slick({
+    //         slidesToShow: 3,
+    //         adaptiveHeight: true,
+    //         responsive: [
+    //             {
+    //                 breakpoint: 767,
+    //                 settings: {
+    //                     slidesToShow: 2,
+    //                     slidesToScroll: 1
+    //                 }
+    //             }
+    //         ]
+    //     });
+    // });
+
     $('.social-slider').each(function (index, sliderWrap) {
       var $carousel = $(this);
       $carousel.slick({

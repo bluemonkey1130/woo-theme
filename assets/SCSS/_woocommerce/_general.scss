@@ -7,44 +7,15 @@
   width: 100%;
   grid-column-start: 1;
   grid-column-end: 15;
-
+  grid-gap: inherit;
   ul.products {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    @include mq(large-tablet) {
-      &:not(.ignore-large-tablet) {
-        grid-template-columns: repeat(2, 1fr);
+    //display: grid;
+    //grid-template-columns:  repeat(4, minmax(170px, 1fr));
+    //grid-auto-flow: dense;
+    @extend .has-four-columns;
+    @extend .row-four;
 
-        & > {
-          *:nth-child(1n+1) {
-            grid-column: auto/ span 1;
-          }
-
-          *:nth-last-child(1) {
-            grid-column: auto/ span 2;
-          }
-        }
-      }
-    }
-    @include mq(tablet) {
-      &:not(.ignore-tablet) {
-        grid-template-columns: repeat(1, 1fr);
-
-        & > {
-          *:nth-child(1n+1) {
-            grid-column: auto/ span 1;
-          }
-        }
-      }
-    }
-    @include mq(mobile) {
-      &:not(.ignore-mobile) {
-        grid-template-columns: repeat(1, 1fr);
-      }
-    }
-    grid-auto-flow: dense;
-
-    grid-gap: var(--s4);
+    grid-gap: inherit;
     .product{
       @extend .stack;
       @extend .stack-tiny;

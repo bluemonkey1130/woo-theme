@@ -31,6 +31,16 @@ function shorten_product_excerpt()
 add_filter('loop_shop_columns', 'loop_columns', 999);
 if (!function_exists('loop_columns')) {
     function loop_columns() {
-        return 3; // 3 products per row
+        return 4; // 3 products per row
     }
+}
+remove_action( 'woocommerce_shop_loop_item_title','woocommerce_template_loop_product_title', 10 );
+add_action('woocommerce_shop_loop_item_title', 'abChangeProductsTitle', 10 );
+function abChangeProductsTitle() {
+    echo '<h4 class="woocommerce-loop-product__title">' . get_the_title() . '</h4>';
+}
+
+add_action('woocommerce_single_product_summary', 'singleProducttitle', 10 );
+function singleProducttitle() {
+    echo '<h2 class="">' . get_the_title() . '</h2>';
 }

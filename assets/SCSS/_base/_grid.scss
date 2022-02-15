@@ -955,8 +955,22 @@
     display: grid;
 
     &.row-four {
-      grid-template-columns:  repeat(4, minmax(170px, 1fr));
-
+      grid-template-columns:  repeat(4, minmax(auto, 1fr));
+      @include mq(large-tablet) {
+        &:not(.ignore-large-tablet) {
+          grid-template-columns:  repeat(2, minmax(auto, 1fr));
+        }
+      }
+      @include mq(phablet) {
+        &:not(.ignore-phablet) {
+          grid-template-columns:  repeat(1, minmax(auto, 1fr));
+        }
+      }
+      @include mq(mobile) {
+        &.ignore-phablet {
+          grid-template-columns:  repeat(1, minmax(auto, 1fr));
+        }
+      }
     }
 
     &.grid-four {

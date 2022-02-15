@@ -52,22 +52,22 @@
                 adaptiveHeight: true,
             });
         });
-        $('.products.columns-4').each(function (index, sliderWrap) {
-            let $carousel = $(this);
-            $carousel.slick({
-                slidesToShow: 3,
-                adaptiveHeight: true,
-                responsive: [
-                    {
-                        breakpoint: 767,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
-            });
-        });
+        // $('.products.columns-4').each(function (index, sliderWrap) {
+        //     let $carousel = $(this);
+        //     $carousel.slick({
+        //         slidesToShow: 3,
+        //         adaptiveHeight: true,
+        //         responsive: [
+        //             {
+        //                 breakpoint: 767,
+        //                 settings: {
+        //                     slidesToShow: 2,
+        //                     slidesToScroll: 1
+        //                 }
+        //             }
+        //         ]
+        //     });
+        // });
 
         $('.social-slider').each(function (index, sliderWrap) {
             let $carousel = $(this);

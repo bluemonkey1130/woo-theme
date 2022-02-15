@@ -816,122 +816,84 @@
                                     "min": "",
                                     "max": ""
                                 },
-                                "layout_61f7cc2d5cad9": {
-                                    "key": "layout_61f7cc2d5cad9",
-                                    "name": "products",
-                                    "label": "Products",
+                                "layout_620820f475096": {
+                                    "key": "layout_620820f475096",
+                                    "name": "embed",
+                                    "label": "Embed",
                                     "display": "block",
                                     "sub_fields": [
                                         {
-                                            "key": "field_61f7cc4e10dfd",
-                                            "label": "Selection Choice",
-                                            "name": "selection_choice",
-                                            "type": "button_group",
+                                            "key": "field_62082275782d1",
+                                            "label": "Embed Type",
+                                            "name": "embed_type",
+                                            "type": "true_false",
                                             "instructions": "",
                                             "required": 0,
                                             "conditional_logic": 0,
                                             "wrapper": {
-                                                "width": "50",
+                                                "width": "",
                                                 "class": "",
                                                 "id": ""
                                             },
-                                            "choices": {
-                                                "all": "All",
-                                                "custom": "Custom",
-                                                "categories": "Categories"
-                                            },
-                                            "allow_null": 0,
-                                            "default_value": "",
-                                            "layout": "horizontal",
-                                            "return_format": "value"
+                                            "message": "",
+                                            "default_value": 0,
+                                            "ui": 1,
+                                            "ui_on_text": "Shortcode",
+                                            "ui_off_text": "Raw"
                                         },
                                         {
-                                            "key": "field_61f7cd2910e01",
-                                            "label": "Limit",
-                                            "name": "limit",
-                                            "type": "number",
+                                            "key": "field_6208212275097",
+                                            "label": "Raw Embed",
+                                            "name": "raw_embed",
+                                            "type": "textarea",
                                             "instructions": "",
                                             "required": 0,
-                                            "conditional_logic": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_62082275782d1",
+                                                        "operator": "!=",
+                                                        "value": "1"
+                                                    }
+                                                ]
+                                            ],
                                             "wrapper": {
-                                                "width": "50",
+                                                "width": "",
                                                 "class": "",
                                                 "id": ""
                                             },
-                                            "default_value": -1,
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "maxlength": "",
+                                            "rows": "",
+                                            "new_lines": ""
+                                        },
+                                        {
+                                            "key": "field_62082264782d0",
+                                            "label": "Shortcode Embed",
+                                            "name": "shortcode_embed",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_62082275782d1",
+                                                        "operator": "==",
+                                                        "value": "1"
+                                                    }
+                                                ]
+                                            ],
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
                                             "placeholder": "",
                                             "prepend": "",
                                             "append": "",
-                                            "min": "",
-                                            "max": "",
-                                            "step": ""
-                                        },
-                                        {
-                                            "key": "field_61f7ccb910dff",
-                                            "label": "Custom",
-                                            "name": "custom",
-                                            "type": "relationship",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": [
-                                                [
-                                                    {
-                                                        "field": "field_61f7cc4e10dfd",
-                                                        "operator": "==",
-                                                        "value": "custom"
-                                                    }
-                                                ]
-                                            ],
-                                            "wrapper": {
-                                                "width": "",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "post_type": [
-                                                "product"
-                                            ],
-                                            "taxonomy": "",
-                                            "filters": [
-                                                "search",
-                                                "post_type",
-                                                "taxonomy"
-                                            ],
-                                            "elements": [
-                                                "featured_image"
-                                            ],
-                                            "min": "",
-                                            "max": "",
-                                            "return_format": "object"
-                                        },
-                                        {
-                                            "key": "field_61f7cce910e00",
-                                            "label": "Product Categories",
-                                            "name": "product_categories",
-                                            "type": "taxonomy",
-                                            "instructions": "",
-                                            "required": 0,
-                                            "conditional_logic": [
-                                                [
-                                                    {
-                                                        "field": "field_61f7cc4e10dfd",
-                                                        "operator": "==",
-                                                        "value": "categories"
-                                                    }
-                                                ]
-                                            ],
-                                            "wrapper": {
-                                                "width": "",
-                                                "class": "",
-                                                "id": ""
-                                            },
-                                            "taxonomy": "product_cat",
-                                            "field_type": "checkbox",
-                                            "add_term": 1,
-                                            "save_terms": 0,
-                                            "load_terms": 0,
-                                            "return_format": "id",
-                                            "multiple": 0,
-                                            "allow_null": 0
+                                            "maxlength": ""
                                         }
                                     ],
                                     "min": "",
@@ -1003,8 +965,21 @@
                                 "auto": "Auto",
                                 "has-one-column": "1 Col",
                                 "has-two-columns": "2 Col",
+                                "has-two-columns left-wide": "2 Col (left-wide)",
+                                "has-two-columns right-wide": "2 Col (right-wide)",
+                                "has-two-columns left-wider": "2 Col (left wider)",
+                                "has-two-columns right-wider": "2 Col (right wider)",
+                                "has-two-columns left-stack": "2 Col (left- stack)",
+                                "has-two-columns right-stack": "2 Col (right- stack)",
+                                "has-two-columns left-split-stack": "2 Col (left split stack)",
+                                "has-two-columns right-split-stack": "2 Col (right split stack)",
                                 "has-three-columns": "3 Col",
+                                "has-three-columns left-wide": "3 Col (left-wide)",
+                                "has-three-columns right-wide": "3 Col (right-wide)",
                                 "has-four-columns row-four": "4 Col",
+                                "has-four-columns grid-four": "4 Col (grid)",
+                                "has-four-columns uneven-grid": "4 Col (uneven-1)",
+                                "has-four-columns uneven-grid-flipped :4 Col (uneven-2)": "has-four-columns uneven-grid-flipped :4 Col (uneven-2)",
                                 "has-five-columns": "5 Col",
                                 "has-six-columns": "6 Col"
                             },
@@ -1218,8 +1193,8 @@
                 },
                 "layout_61eff89bf22b1": {
                     "key": "layout_61eff89bf22b1",
-                    "name": "full_width_layout",
-                    "label": "Full width Layout",
+                    "name": "section_layout",
+                    "label": "Section Layout",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -1257,7 +1232,117 @@
                                     "name": "products",
                                     "label": "Products",
                                     "display": "block",
-                                    "sub_fields": [],
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_6203d88090591",
+                                            "label": "Selection Choice",
+                                            "name": "selection_choice",
+                                            "type": "button_group",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "choices": {
+                                                "all": "All",
+                                                "custom": "Custom",
+                                                "categories": "Categories"
+                                            },
+                                            "allow_null": 0,
+                                            "default_value": "",
+                                            "layout": "horizontal",
+                                            "return_format": "value"
+                                        },
+                                        {
+                                            "key": "field_6203d89b90592",
+                                            "label": "Limit",
+                                            "name": "limit",
+                                            "type": "number",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": -1,
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "min": "",
+                                            "max": "",
+                                            "step": ""
+                                        },
+                                        {
+                                            "key": "field_6203d8bc90593",
+                                            "label": "Custom",
+                                            "name": "custom",
+                                            "type": "relationship",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_6203d88090591",
+                                                        "operator": "==",
+                                                        "value": "custom"
+                                                    }
+                                                ]
+                                            ],
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "post_type": [
+                                                "product"
+                                            ],
+                                            "taxonomy": "",
+                                            "filters": [
+                                                "search",
+                                                "post_type",
+                                                "taxonomy"
+                                            ],
+                                            "elements": "",
+                                            "min": "",
+                                            "max": "",
+                                            "return_format": "object"
+                                        },
+                                        {
+                                            "key": "field_6203d8cf90594",
+                                            "label": "Product Categories",
+                                            "name": "product_categories",
+                                            "type": "taxonomy",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": [
+                                                [
+                                                    {
+                                                        "field": "field_6203d88090591",
+                                                        "operator": "==",
+                                                        "value": "categories"
+                                                    }
+                                                ]
+                                            ],
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "taxonomy": "product_cat",
+                                            "field_type": "checkbox",
+                                            "add_term": 1,
+                                            "save_terms": 0,
+                                            "load_terms": 0,
+                                            "return_format": "id",
+                                            "multiple": 0,
+                                            "allow_null": 0
+                                        }
+                                    ],
                                     "min": "",
                                     "max": ""
                                 }
@@ -1567,11 +1652,9 @@
     "style": "seamless",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": [
-        "the_content"
-    ],
+    "hide_on_screen": "",
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1643630188
+    "modified": 1644700395
 }

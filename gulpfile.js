@@ -53,6 +53,7 @@ function jsDeps(done) {
         "./assets/JS/_vendor/jquery.magnific-popup.js",
         // "./assets/JS/_vendor/plyr.js",
         "./assets/JS/_vendor/jquery-ui.js",
+        "./assets/JS/_vendor/isotope.pkgd.min.js",
     ]
     return (
         src(files)

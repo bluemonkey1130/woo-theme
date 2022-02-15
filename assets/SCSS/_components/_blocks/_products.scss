@@ -1,0 +1,25 @@
+.grid_layout {
+
+}
+
+.section_layout {
+  .grid {
+    .stack {
+      figure {
+
+      }
+    }
+
+    .isoproducts {
+      .grid-sizer,
+      .grid-item {
+        width: calc(34.3% - 30px);
+
+      }
+
+      .grid-item--width2 {
+        width: 40%;
+      }
+    }
+  }
+}

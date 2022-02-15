@@ -269,3 +269,21 @@
     }
   }
 }
+
+
+@each $color, $shades in colours.$baseColors {
+  /*----------------------------------------
+    #{$color} utility classes
+  ----------------------------------------*/
+  @each $shade, $value in $shades {
+    .color-#{$color}-#{$shade} {
+      color: var(--#{$color}-#{$shade});
+      & > *,a,p,h1,h2,h3,h4,h5,h6,hr  {
+        &:nth-child(1n){
+          color: var(--#{$color}-#{$shade});
+        }
+      }
+    }
+
+  }
+}

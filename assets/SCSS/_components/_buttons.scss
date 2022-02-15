@@ -135,6 +135,27 @@ p {
   }
 }
 
+.woocommerce{
+  .checkout-button.button.alt.wc-forward{
+    @extend .primary;
+  }
+  .woocommerce_checkout_place_order{
+    @extend .primary;
+  }
+  div.product{
+    form.cart {
+      button.alt.single_add_to_cart_button{
+        @extend .button;
+        @extend .primary;
+        &:disabled, &:hover{
+          @extend .primary;
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+}
+
 input[type="submit"] {
   @extend .button;
   //@extend .primary;
