@@ -26,13 +26,14 @@ if (have_rows('row')) {
         $rowLayout = get_sub_field('row_layout');
         $backgroundImage = get_sub_field('background_image');
         $layout = get_row_layout();
-
+        $anchorLabel = get_sub_field('admin_label');
 //        var_dump($backgroundImage);
 
         if ($layout == 'grid_layout') {
 
             if (have_rows('content')) { ?>
-                <section style="background: url(<?php echo $backgroundImage['url']; ?>) center center/cover no-repeat"
+                <section id="<?php echo sanitize_title($anchorLabel); ?>"
+                    <?php if($backgroundImage){ ?>style="background: url(<?php echo $backgroundImage['url']; ?>) center center/cover no-repeat"<?php }?>
                         class="grid-row <?php echo $rowSpace . ' ' . $rowColour . ' ' . $paddingTop . ' ' . $paddingBottom . ' ' . sanitize_title($layout) ?>">
                     <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>">
                         <?php while (have_rows('content')) : the_row(); ?>
@@ -185,7 +186,6 @@ if (have_rows('row')) {
                                                        target="<?php echo $button['target'] ?>">
                                                         <?php echo $button['title'] ?></a>
                                                     <?php
-
                                                 }
                                                 ?>
                                             </div>

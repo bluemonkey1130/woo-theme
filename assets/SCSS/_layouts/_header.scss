@@ -353,6 +353,16 @@ header {
       //  display: none;
       //}
     }
+    .header-cart{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      font-size: 1.2rem;
+      i{
+        padding-right: 5px;
+      }
+    }
   }
 
   &.default, &.sticky, &.fixed {

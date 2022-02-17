@@ -30,6 +30,14 @@ function rock_toffee_theme_support()
             'menu_title'  => __('Header'),
             'parent_slug' => $parent['menu_slug'],
         ));
+
+        // Add sub page.
+        acf_add_options_sub_page(array(
+            'page_title'  => __('Footer Settings'),
+            'menu_title'  => __('Footer'),
+            'parent_slug' => $parent['menu_slug'],
+        ));
+
         // Add sub page.
         acf_add_options_sub_page(array(
             'page_title'  => __('Font Settings'),

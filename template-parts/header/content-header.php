@@ -64,7 +64,7 @@ $headerBuilder = get_field('header_builder', 'option');
                             <?php global $woocommerce;
                             if ($woocommerce->cart->cart_contents_count > 0) {
                                 ?>
-                                    <a class="your-class-name" href="<?php echo $woocommerce->cart->get_cart_url(); ?>"
+                                    <a class="header-cart" href="<?php echo $woocommerce->cart->get_cart_url(); ?>"
                                        title="<?php _e('Cart View', 'woothemes'); ?>"><i class="fas fa-shopping-cart"></i>
                                         <?php echo sprintf(_n('%d', '%d', $woocommerce->cart->cart_contents_count, 'woothemes'),
                                             $woocommerce->cart->cart_contents_count); ?>
