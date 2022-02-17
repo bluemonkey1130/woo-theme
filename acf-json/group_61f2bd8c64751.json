@@ -84,10 +84,10 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_61f2befb3dcde",
-                            "label": "Slide Text",
-                            "name": "slide_text",
-                            "type": "wysiwyg",
+                            "key": "field_620bfbbc66e29",
+                            "label": "Slide Options",
+                            "name": "slide_options",
+                            "type": "select",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -96,11 +96,17 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "tabs": "all",
-                            "toolbar": "full",
-                            "media_upload": 1,
-                            "delay": 0
+                            "choices": {
+                                "Standard": "Standard",
+                                "Split": "Split"
+                            },
+                            "default_value": false,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": ""
                         },
                         {
                             "key": "field_61f2befb3dcdf",
@@ -125,6 +131,25 @@
                             "max_height": "",
                             "max_size": "",
                             "mime_types": ""
+                        },
+                        {
+                            "key": "field_61f2befb3dcde",
+                            "label": "Slide Text",
+                            "name": "slide_text",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
                         }
                     ],
                     "min": "",
@@ -527,7 +552,7 @@
             {
                 "param": "page",
                 "operator": "==",
-                "value": "10"
+                "value": "582"
             }
         ]
     ],
@@ -540,5 +565,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1644435588
+    "modified": 1644952556
 }

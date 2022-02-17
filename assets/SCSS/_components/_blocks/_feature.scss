@@ -1,0 +1,40 @@
+.featureBlock {
+  display: flex;
+  grid-gap: inherit;
+  justify-content: center;
+  align-items: center;
+
+  &.left {
+    flex-direction: row-reverse;
+  }
+
+  &.right {
+    flex-direction: row;
+  }
+
+  &.top {
+    flex-direction: column;
+  }
+
+  &.bottom {
+    flex-direction: column-reverse;
+  }
+
+  .stack {
+  }
+
+  figure {
+    &.default {
+    }
+
+    &.circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+  }
+}

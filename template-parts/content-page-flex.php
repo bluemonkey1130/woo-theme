@@ -24,12 +24,15 @@ if (have_rows('row')) {
         $paddingBottom = get_sub_field('padding_bottom');
         $rowWidth = get_sub_field('row_width');
         $rowLayout = get_sub_field('row_layout');
+        $backgroundImage = get_sub_field('background_image');
         $layout = get_row_layout();
+
+//        var_dump($backgroundImage);
 
         if ($layout == 'grid_layout') {
 
             if (have_rows('content')) { ?>
-                <section
+                <section style="background: url(<?php echo $backgroundImage['url']; ?>) center center/cover no-repeat"
                         class="grid-row <?php echo $rowSpace . ' ' . $rowColour . ' ' . $paddingTop . ' ' . $paddingBottom . ' ' . sanitize_title($layout) ?>">
                     <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>">
                         <?php while (have_rows('content')) : the_row(); ?>
@@ -153,6 +156,48 @@ if (have_rows('row')) {
                                         echo do_shortcode($shortCode);
                                     }
                                     ?>
+                                </div>
+                            <?php } elseif (get_row_layout() == 'feature_text') { ?>
+                                <?php
+                                $text = get_sub_field('text');
+                                $orientation = get_sub_field('image_orientation');
+                                $image = get_sub_field('image');
+                                $imageStyle = get_sub_field('image_style');
+                                $imageCrop = get_sub_field('image_crop');
+                                $maxWidth = get_sub_field('max_width');
+                                $blockColour = get_sub_field('block_colour');
+                                $padding = get_sub_field('padding');
+                                ?>
+                                <div class="featureBlock <?php echo $orientation.' '.$blockColour.' '.$padding ?>">
+                                    <div class="stack">
+                                        <?php echo $text; ?>
+                                        <?php
+                                        $buttonRepeater = get_sub_field('button_repeater');
+                                        $buttonOrientation = get_sub_field('button_orientation');
+                                        if ($buttonRepeater) {
+                                            ?>
+                                            <div class="button-wrap <?php echo $buttonOrientation; ?>">
+                                                <?php
+                                                foreach ($buttonRepeater as $buttonBlock) {
+                                                    $button = $buttonBlock['button']; ?>
+                                                    <a href="<?php echo $button['url'] ?>"
+                                                       class="button <?php echo $buttonBlock['button_style'] . ' ' . $buttonBlock['button_colour'] ?>"
+                                                       target="<?php echo $button['target'] ?>">
+                                                        <?php echo $button['title'] ?></a>
+                                                    <?php
+
+                                                }
+                                                ?>
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <?php if ($image) { ?>
+                                        <figure class="<?php echo $imageStyle; ?>" style="max-width:<?php echo $maxWidth; ?>px">
+                                            <?php echo wp_get_attachment_image($image['id'], $imageCrop, false, ["class" => "", "alt" => $image['alt']]); ?>
+                                        </figure>
+                                    <?php } ?>
                                 </div>
                             <?php }
                         endwhile; ?>
