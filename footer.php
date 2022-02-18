@@ -63,6 +63,7 @@ $footerBuilder = get_field('footer_row', 'option');
 
         }
     }
+    wp_footer()
     ?>
 </footer>
 
