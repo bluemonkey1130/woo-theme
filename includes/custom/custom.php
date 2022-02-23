@@ -39,6 +39,8 @@ function get_video_thumbnail_uri( $video_uri ) {
 /**
  * Parse the video uri/url to determine the video type/source and the video id
  */
+
+
 function parse_video_uri( $url ) {
 
     // Parse the url

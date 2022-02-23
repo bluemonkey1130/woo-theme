@@ -77,7 +77,14 @@
             {
                 "param": "page",
                 "operator": "==",
-                "value": "10"
+                "value": "582"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
             }
         ]
     ],
@@ -92,5 +99,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1643373390
+    "modified": 1645192023
 }

@@ -554,6 +554,13 @@
                 "operator": "==",
                 "value": "582"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
         ]
     ],
     "menu_order": 0,
@@ -565,5 +572,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1644952556
+    "modified": 1645192038
 }

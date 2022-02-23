@@ -686,7 +686,7 @@
                                             "key": "field_61f42bf789fb8",
                                             "label": "Video",
                                             "name": "video_content",
-                                            "type": "oembed",
+                                            "type": "text",
                                             "instructions": "",
                                             "required": 0,
                                             "conditional_logic": 0,
@@ -695,8 +695,11 @@
                                                 "class": "",
                                                 "id": ""
                                             },
-                                            "width": "",
-                                            "height": ""
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": ""
                                         }
                                     ],
                                     "min": "",
@@ -2040,6 +2043,13 @@
                 "operator": "==",
                 "value": "582"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
         ]
     ],
     "menu_order": 2,
@@ -2051,5 +2061,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1645101596
+    "modified": 1645219169
 }

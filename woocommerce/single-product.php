@@ -25,6 +25,7 @@ get_template_part('template-parts/content', 'hero');
 ?>
     <section class="grid-row gap-top-400">
         <div class="grid align-wide grid-gap-400">
+
             <?php
             /**
              * woocommerce_before_main_content hook.
