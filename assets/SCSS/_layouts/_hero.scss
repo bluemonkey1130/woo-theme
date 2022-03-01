@@ -32,14 +32,19 @@
       z-index: 3;
       align-content: center;
       //padding: var(--s4) 0;
+      &.split{
+        grid-column: 2 / span 5;
+      }
     }
 
     &.hero-media {
       grid-row: 1;
-
       img {
         height: 100%;
         width: 100%;
+      }
+      &.split{
+        grid-column: 8 / span 7;
       }
     }
 
@@ -347,7 +352,9 @@
 
     .hero-banner {
       z-index: -1;
+      position: absolute;
       object-fit: cover;
+      object-position: center;
       grid-column-start: 1;
       grid-column-end: 15;
     }

@@ -1,7 +1,7 @@
 'use strict';
 (function ($) {
 
-    $('.grid').packery({
+    $('.masonry').packery({
         // options
         columnWidth: '.grid-sizer',
         percentPosition: true,

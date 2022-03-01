@@ -5,13 +5,14 @@ $heroSettings = get_field('hero_settings');
 
 if (have_rows('hero_slides')):
     ?>
-    <section id="hero" class="grid-row ">
+    <section id="hero" class="grid-row">
         <?php $numrows = count($heroSlides); ?>
         <?php if ($numrows > 1){ ?>
-        <div class="grid align-full slider">
+        <div class="grid align-full slider ">
             <?php } ?>
             <?php while (have_rows('hero_slides')) : the_row();
                 $text = get_sub_field('slide_text');
+                $slideOptions = get_sub_field('slide_options');
 
                 ?>
                 <?php if ($numrows > 1) { ?>
@@ -23,6 +24,7 @@ if (have_rows('hero_slides')):
                     $heroSettings['layout'] . ' ' .
                     $heroSettings['grid_gap'] . ' ' .
                     $heroSettings['padding_top'] . ' ' .
+                    $slideOptions . ' ' .
                     $heroSettings['padding_bottom']; ?>">
                     <div class="<?php echo $heroSettings['text_colour']; ?>">
                         <?php echo $text; ?>
@@ -34,6 +36,7 @@ if (have_rows('hero_slides')):
                     $heroSettings['overlay'] . ' ' .
                     $heroSettings['overlay_type'] . ' ' .
                     $heroSettings['opacity'] . ' ' .
+                    $slideOptions . ' ' .
                     $heroSettings['blend_mode']; ?>">
                     <?php
                     if (get_row_layout() == 'video'):

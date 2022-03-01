@@ -1,5 +1,3 @@
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 // 'use strict';
 // (function ($) {
 //
@@ -72,6 +70,31 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 //     });
 //
 // })(jQuery); // Fully reference jQuery after this point.
+'use strict';
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+(function ($) {
+  $('.masonry').packery({
+    // options
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+    itemSelector: '.grid-item',
+    gutter: 0
+  });
+  $('.gallery-item').magnificPopup({
+    type: 'image',
+    closeOnContentClick: true,
+    disableOn: 0,
+    mainClass: 'mfp-fade',
+    gallery: {
+      enabled: true,
+      preload: [0, 2]
+    }
+  });
+})(jQuery); // Fully reference jQuery after this point.
+
+
 (function ($) {
   // Select all links with hashes
   //     $('a[href*="#"]')

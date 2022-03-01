@@ -92,13 +92,13 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "25",
                                 "class": "",
                                 "id": ""
                             },
                             "choices": {
-                                "Standard": "Standard",
-                                "Split": "Split"
+                                "standard": "Standard",
+                                "split": "Split"
                             },
                             "default_value": false,
                             "allow_null": 0,
@@ -133,7 +133,7 @@
                             "mime_types": ""
                         },
                         {
-                            "key": "field_61f2befb3dcde",
+                            "key": "field_62162d3f15cd3",
                             "label": "Slide Text",
                             "name": "slide_text",
                             "type": "wysiwyg",
@@ -572,5 +572,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1645192038
+    "modified": 1645620572
 }

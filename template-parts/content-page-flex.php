@@ -69,7 +69,7 @@ if ($flexFields > 0) {
 
                                         </div>
                                         <?php break;
-                                    case'image' :
+                                    case 'image' :
                                         ?>
                                         <figure class="imageBlock <?php ?>">
                                             <?php
@@ -153,7 +153,7 @@ if ($flexFields > 0) {
                                             ?>
                                         </div>
                                     <?php
-                                    case'feature_text': ?>
+                                    case 'feature_text': ?>
                                         <div class="featureBlock <?php echo $block['image_orientation'] . ' ' . $block['block_colour'] . ' ' . $block['padding'] ?>">
                                             <div class="stack">
                                                 <?php echo $block['text'];
@@ -260,6 +260,55 @@ if ($flexFields > 0) {
                                         }
                                         wp_reset_postdata();
                                         ?>
+                                    </div>
+                                    <?php break;
+                                case 'masonry' : ?>
+                                    <div class="grid masonry <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>">
+                                        <div class="grid-sizer"></div>
+                                        <?php foreach ($block['content'] as $tile) {
+                                            $contentType = $tile['content_type'];
+                                            $tileSize = $tile['tile_size'];
+                                            $tileColour = $tile['background_colour'];
+                                            $tilePadding = $tile['padding'];
+                                            switch (sanitize_title($tileSize)) {
+                                                case 'two-x-two':
+                                                case 'one-x-one':
+                                                    $crop = 'square500';
+                                                    break;
+                                                case 'one-x-two':
+                                                    $crop = 'square1000';
+                                                    break;
+                                                case 'two-x-one':
+                                                    $crop = 'largeportrait';
+                                                    break;
+                                            }
+                                            ?>
+                                            <div class="grid-item <?php echo $tileSize.' '.$contentType.' '.$tilePadding.' '.$tileColour; ?>">
+                                                <?php
+                                                switch ($contentType) {
+                                                    case'text': ?>
+                                                        <div class="item__content">
+                                                            <?php echo $tile['text']; ?>
+                                                        </div>
+                                                        <?php break;
+                                                    case'image': ?>
+                                                        <div class="item__content">
+                                                            <?php echo wp_get_attachment_image($tile['image']['id'], $crop, false, ["class" => "", "alt" => $tile['image']['alt']]); ?>
+                                                            <a class="gallery-item abs"
+                                                               href="<?php echo $tile['image']['url'] ?>" alt="<?php echo $tile['image']['alt']?>"></a>
+
+                                                        </div>
+
+                                                        <?php break;
+                                                    default;
+                                                }
+                                                ?>
+                                            </div>
+                                            <?php
+                                            ?>
+
+                                            <?php
+                                        } ?>
                                     </div>
                                     <?php break;
                                 default;

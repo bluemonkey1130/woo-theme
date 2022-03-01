@@ -51,6 +51,7 @@ function jsDeps(done) {
         // "node_modules/barba.js/dist/barba.min.js",
         "./assets/JS/_vendor/jquery.ihavecookies.min.js",
         "./assets/JS/_vendor/jquery.magnific-popup.js",
+        "./assets/JS/_vendor/packery.js",
         // "./assets/JS/_vendor/plyr.js",
         "./assets/JS/_vendor/jquery-ui.js",
         "./assets/JS/_vendor/isotope.pkgd.min.js",

@@ -41,39 +41,35 @@ $headerBuilder = get_field('header_builder', 'option');
                         case 'logo_block': ?>
                             <?php if ($block['logo']) { ?>
                                 <a href="<?php echo home_url(); ?>" class="logo centreCentre
-                                <?php echo $block['padding']['padding_top'].' '. $block['padding']['padding_bottom'].' ' .' '. $block['padding']['padding_left'].' ' .' '. $block['padding']['padding_right'].' ' ?>"
-                                   style="flex: 1 1 <?php echo $block['width']?>%; max-width: <?php echo $block['max_width']?>px; min-width: <?php echo $block['min_width']?>px">
+                                <?php echo $block['padding']['padding_top'] . ' ' . $block['padding']['padding_bottom'] . ' ' . ' ' . $block['padding']['padding_left'] . ' ' . ' ' . $block['padding']['padding_right'] . ' ' ?>"
+                                   style="flex: 1 1 <?php echo $block['width'] ?>%; max-width: <?php echo $block['max_width'] ?>px; min-width: <?php echo $block['min_width'] ?>px">
                                     <figure>
                                         <?php echo wp_get_attachment_image($block['logo']['id'], 'thumbnail', false, ["class" => "", "alt" => $block['logo']['alt']]); ?>
                                     </figure>
                                 </a>
                             <?php } else { ?>
                                 <h2 class="logo" role="banner">
-                                    <a class="hdr-logo-link" href="<?php echo home_url(); ?>" rel="home"><?php echo get_bloginfo('name'); ?></a>
+                                    <a class="hdr-logo-link" href="<?php echo home_url(); ?>"
+                                       rel="home"><?php echo get_bloginfo('name'); ?></a>
                                 </h2>
                             <?php } ?>
                             <?php break;
                         case 'cta_block': ?>
 
-                            <a class="button <?php echo $block['button_style'].' '.$block['button_colour'] ?>"
+                            <a class="button <?php echo $block['button_style'] . ' ' . $block['button_colour'] ?>"
                                style="flex: 1 1 <?php echo $block['width'] ?>%;"
                                href="<?php echo $block['button']['url'] ?>"
                                target="<?php echo $block['button']['target'] ?>"><?php echo $block['button']['title']; ?></a>
                             <?php break;
                         case 'cart': ?>
-                            <?php global $woocommerce;
-                            if ($woocommerce->cart->cart_contents_count > 0) {
-                                ?>
-                                    <a class="header-cart" href="<?php echo $woocommerce->cart->get_cart_url(); ?>"
-                                       title="<?php _e('Cart View', 'woothemes'); ?>"><i class="fas fa-shopping-cart"></i>
-                                        <?php echo sprintf(_n('%d', '%d', $woocommerce->cart->cart_contents_count, 'woothemes'),
-                                            $woocommerce->cart->cart_contents_count); ?>
-                                    </a>
-
-
-                                <?php
-                            }
-                            ?>
+                            <?php global $woocommerce; ?>
+                            <a class="header-cart"
+                               href="<?php echo $woocommerce->cart->get_cart_url(); ?>"
+                               title="<?php _e('Cart View', 'woothemes'); ?>">
+                                <i class="fas fa-shopping-cart"></i>
+                                <?php echo sprintf(_n('%d', '%d', $woocommerce->cart->cart_contents_count, 'woothemes'),
+                                    $woocommerce->cart->cart_contents_count); ?>
+                            </a>
                             <?php break;
                         default;
                     }
