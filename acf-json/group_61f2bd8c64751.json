@@ -150,6 +150,44 @@
                             "toolbar": "full",
                             "media_upload": 1,
                             "delay": 0
+                        },
+                        {
+                            "key": "field_621f8689e00b2",
+                            "label": "Image Crop",
+                            "name": "image_crop",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "Default",
+                                "original": "Original",
+                                "letterBox": "Letterbox  - 1920 x 800",
+                                "smallLetterbox": "Letterbox - 1920 x 600",
+                                "extraLarge": "16:9 -1920 x 1080",
+                                "large": "16:9 - 1536 x 864",
+                                "mediumLarge": "16:9 - 768 x 432",
+                                "medium": "16:9 - 567 x 324",
+                                "small": "16:9 - 384 x 216",
+                                "portrait": "Portait - 450 x 600",
+                                "largePortrait": "Portait - 450 x 600",
+                                "square1000": "1:1 - 1000 x 1000",
+                                "square500": "1:1 - 500 x 500",
+                                "square200": "1:1 - 200 x 200",
+                                "fourThree": "4:3 - 600 x 400"
+                            },
+                            "default_value": false,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -552,14 +590,14 @@
             {
                 "param": "page",
                 "operator": "==",
-                "value": "582"
+                "value": "6"
             }
         ],
         [
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "product"
+                "value": "post"
             }
         ]
     ],
@@ -572,5 +610,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1645620572
+    "modified": 1646233544
 }

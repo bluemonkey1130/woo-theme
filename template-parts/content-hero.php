@@ -57,18 +57,35 @@ if (have_rows('hero_slides')):
                     <?php
 
                     elseif (get_row_layout() == 'image'):
-                        $image = get_sub_field('image'); ?>
+                        $image = get_sub_field('image');
+                        $imageCrop = get_sub_field('image_crop'); ?>
+
+                        <?php if ($imageCrop == 'original'):
+                        ?>
+                        <img class="hero-banner"
+                             src="<?php echo wp_get_attachment_image_url($image['id']) ?>"
+                             alt="<?php echo $image['alt']; ?>"
+                        />
+                    <?php
+                    elseif ($imageCrop != 'default') : ?>
+                        <img class="hero-banner"
+                             src="<?php echo wp_get_attachment_image_url($image['id'], $imageCrop) ?>"
+                             alt="<?php echo $image['alt']; ?>"
+                        />
+                    <?php else: ?>
                         <img class="hero-banner"
                              src="<?php echo wp_get_attachment_image_url($image['id'], 'extraLarge') ?>"
                              srcset="<?php echo wp_get_attachment_image_srcset($image['id'], 'extraLarge') ?> 1920w,
-                                <?php echo wp_get_attachment_image_srcset($image['id'], 'large') ?> 1536w,
-                                <?php echo wp_get_attachment_image_srcset($image['id'], 'mediumLarge') ?> 768w,
-                                <?php echo wp_get_attachment_image_srcset($image['id'], 'medium') ?> 576w,
-                                <?php echo wp_get_attachment_image_srcset($image['id'], 'small') ?> 384w,"
+                                    <?php echo wp_get_attachment_image_srcset($image['id'], 'mediumLarge') ?> 1536w,
+                                    <?php echo wp_get_attachment_image_srcset($image['id'], 'mediumLarge') ?> 768w,
+                                    <?php echo wp_get_attachment_image_srcset($image['id'], 'medium') ?> 576w,
+                                    <?php echo wp_get_attachment_image_srcset($image['id'], 'small') ?> 384w,"
                              sizes="100vw"
                              alt="<?php echo $image['alt']; ?>"
                         />
                     <?php
+                    endif;
+
                         // Do something...
 
                     endif;
