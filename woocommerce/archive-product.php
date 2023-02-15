@@ -24,7 +24,7 @@ get_header('shop');
         get_template_part('template-parts/content', 'hero');
         ?>
         <section class="grid-row">
-            <div class="grid align-wide grid-gap-400 gap-top-400">
+            <div class="grid wide grid-gap-400 gap-top-400">
                 <?php
                 /**
                  * Hook: woocommerce_before_main_content.
@@ -41,7 +41,7 @@ get_header('shop');
         if (woocommerce_product_loop()) {
             ?>
             <section class="grid-row">
-                <div class="grid align-wide has-one-column grid-gap-400 gap-top-400">
+                <div class="grid wide has-one-column grid-gap-400 gap-top-400">
                     <?php
                     /**
                      * Hook: woocommerce_before_shop_loop.
@@ -54,32 +54,39 @@ get_header('shop');
                     ?>
                 </div>
             </section>
-            <section class="grid-row">
-                <div class="grid align-wide medium-blocks grid-gap-400 gap-top-400">
-                    <?php
-                    //            woocommerce_product_loop_start();
+            <section class="grid-row shop">
+                    <div class="products-list">
+                        <?php
+                        woocommerce_product_loop_start();
 
-                    if (wc_get_loop_prop('total')) {
-                        while (have_posts()) {
-                            the_post();
+                        if (wc_get_loop_prop('total')) {
+                            while (have_posts()) {
+                                the_post();
 
-                            /**
-                             * Hook: woocommerce_shop_loop.
-                             */
-                            do_action('woocommerce_shop_loop');
+                                /**
+                                 * Hook: woocommerce_shop_loop.
+                                 */
+                                do_action('woocommerce_shop_loop');
 
-                            wc_get_template_part('content', 'product');
+                                wc_get_template_part('content', 'product');
+                            }
                         }
-                    }
 
-                    //            woocommerce_product_loop_end();
-                    ?>
+                        woocommerce_product_loop_end();
+                        ?>
+                    </div>
+<!--                    <div class="products-filters">-->
+<!--                        --><?php
+//                        if (is_active_sidebar('shop-widget')) :
+//                            dynamic_sidebar('shop-widget');
+//                        endif; ?>
+<!--                    </div>-->
                 </div>
             </section>
             <?php
             ?>
             <section class="grid-row">
-                <div class="grid align-wide grid-gap-400 gap-top-400">
+                <div class="grid wide grid-gap-400 gap-top-400">
                     <?php
 
                     /**
@@ -102,7 +109,7 @@ get_header('shop');
         }
         ?>
         <section class="grid-row">
-            <div class="grid align-wide grid-gap-400 gap-top-400">
+            <div class="grid wide grid-gap-400 gap-top-400">
                 <?php
                 /**
                  * Hook: woocommerce_after_main_content.

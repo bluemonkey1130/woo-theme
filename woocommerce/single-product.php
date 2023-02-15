@@ -23,60 +23,51 @@ get_header('shop'); ?>
 <?php
 get_template_part('template-parts/content', 'hero');
 ?>
-    <section class="grid-row gap-top-400">
-        <div class="grid align-wide grid-gap-400">
+<section class="grid-row gap-top-400">
+    <div class="grid wide grid-gap-400">
 
-            <?php
-            /**
-             * woocommerce_before_main_content hook.
-             *
-             * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
-             * @hooked woocommerce_breadcrumb - 20
-             */
-            do_action('woocommerce_before_main_content');
-            ?>
-        </div>
-    </section>
+        <?php
+        /**
+         * woocommerce_before_main_content hook.
+         *
+         * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+         * @hooked woocommerce_breadcrumb - 20
+         */
+        do_action('woocommerce_before_main_content');
+        ?>
+    </div>
+</section>
 <?php
 ?>
-    <section class="grid-row gap-top-400">
-        <div class="grid align-wide has-one-column grid-gap-400">
+<section class="grid-row gap-top-400">
+    <div class="grid wide has-one-column grid-gap-400">
 
-            <?php while (have_posts()) : ?>
-                <?php the_post(); ?>
+        <?php while (have_posts()) : ?>
+            <?php the_post(); ?>
 
-                <?php wc_get_template_part('content', 'single-product'); ?>
+            <?php wc_get_template_part('content', 'single-product'); ?>
 
-            <?php endwhile; // end of the loop. ?>
+        <?php endwhile; // end of the loop. ?>
 
-        </div>
-    </section>
-
-<?php
-?>
-    <section class="grid-row gap-top-400">
-        <div class="grid align-wide medium-blocks grid-gap-400">
-            <?php
-            /**
-             * woocommerce_after_main_content hook.
-             *
-             * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
-             */
-            do_action('woocommerce_after_main_content');
-            ?>
-
-
-        </div>
-    </section>
+    </div>
+</section>
 
 <?php
 ?>
-    <section class="grid-row gap-top-400">
-        <div class="grid align-wide grid-gap-400">
-            <?php
-            get_footer('shop');
-            ?>
-        </div>
-    </section>
+<section class="grid-row gap-top-400">
+    <div class="grid wide medium-blocks grid-gap-400">
+        <?php
+        /**
+         * woocommerce_after_main_content hook.
+         *
+         * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+         */
+        do_action('woocommerce_after_main_content');
+        ?>
+
+
+    </div>
+</section>
+
 <?php
-/* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
+get_footer('shop');
