@@ -6,6 +6,8 @@
   position: relative;
   img {
     width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
   }
   i.fas {
     position: absolute;
@@ -21,6 +23,7 @@
     font-size: var(--s5);
     cursor: pointer;
     text-align: center;
+    pointer-events: none;
 
     &:before {
       color: var(--light-main);

@@ -6,6 +6,7 @@
             "key": "field_6070c0d36e137",
             "label": "Space Size",
             "name": "space_size",
+            "aria-label": "",
             "type": "number",
             "instructions": "This is a Major Third scale that powers all margins & padding. All items are calculated off the base size, so change that and cascade across your whole project",
             "required": 0,
@@ -42,5 +43,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1642168236
+    "modified": 1674012429
 }

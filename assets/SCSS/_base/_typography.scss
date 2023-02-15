@@ -9,6 +9,10 @@ body {
 .heading-font {
   font-family: var(--heading-font);
 }
+.starfish-font {
+  font-family: var(--starfish-font);
+  line-height: 2;
+}
 
 .body-font {
   font-family: var(--body-font);
@@ -65,15 +69,34 @@ html.safari-12, html.safari-13 {
   }
 
   h4, .h4 {
-    font-size: clamp(var(--f0), 3vw, var(--f2))
+    font-size: min(max(var(--f0), 3vw), var(--f2));
   }
 
   h5, .h5 {
-    font-size: clamp(var(--f0), 2vw, var(--f1));
+    font-size: min(max(var(--f0), 2vw), var(--f1));
+
   }
 
   h6, .h6 {
-    font-size: clamp(var(--f0), 1vw, var(--f0));
+    font-size: min(max(var(--f0), 1vw), var(--f0));
+
+  }
+  p{
+    font-size: min(max(var(--f0), 5vw), var(--f1));
+
+    &.intro, >.intro{
+      font-size: min(max(var(--f0), 5vw), var(--f2));
+    }
+  }
+  main {
+    ol, ul {
+      li {
+        font-size: min(max(var(--f0), 5vw), var(--f1));
+      }
+    }
+  }
+  blockquote {
+    font-size: min(max(var(--f0), 5vw), var(--f2));
   }
 }
 
@@ -82,10 +105,13 @@ a {
 }
 
 p {
-  font-size: clamp(var(--f0), 2vw, var(--f0));
+  font-size: clamp(var(--f0), 5vw, var(--f1));
   margin-bottom: var(--f1);
   max-width: var(--max-character-length);
   color: var(--base-body);
+  &.intro, >.intro{
+    font-size: clamp(var(--f0), 5vw, var(--f2));
+  }
 
 }
 
@@ -93,21 +119,23 @@ p[style*="text-align: center"] {
   max-width: unset;
 }
 
-div:not(#wpadminbar) {
-  //ol, ul {
-  //  color: var(--base-body);
-  //  padding-left: 13px;
-  //  margin-bottom: 0.8rem !important;
-  //
-  //  li {
-  //    color: var(--base-body);
-  //    margin-bottom: 0.5rem;
-  //
-  //    p {
-  //      margin: 0;
-  //    }
-  //  }
-  //}
+main {
+
+  ol, ul {
+    color: var(--base-body);
+    padding-left: 13px;
+    margin-bottom: 0.8rem !important;
+
+    li {
+      color: var(--base-body);
+      margin-bottom: 0.5rem;
+      font-size: clamp(var(--f0), 5vw, var(--f1));
+
+      p {
+        margin: 0;
+      }
+    }
+  }
 }
 
 blockquote {
@@ -161,7 +189,7 @@ address {
 }
 
 td {
-  border: 1px solid;
+  //border: 1px solid;
   padding: 1rem;
 }
 

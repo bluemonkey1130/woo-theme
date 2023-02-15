@@ -25,6 +25,29 @@ function my_acf_admin_head()
             background-color: #18A8F0 !important;
             color: white !important;
         }
+        [data-layout="feature_text"] > .acf-fc-layout-handle {
+            background-color: #E0E4CC !important;
+            color: black !important;
+        }
+        [data-layout="spacer"] > .acf-fc-layout-handle {
+            background-color: #4D685A !important;
+            color: white !important;
+        }
+
+        [data-layout="related_page"] > .acf-fc-layout-handle {
+            background-color: #5F4BB6 !important;
+            color: white !important;
+        }
+
+        /*SECTION*/
+        [data-layout="section_layout"] > .acf-fc-layout-handle {
+            background-color: #1C3A13 !important;
+            color: white !important;
+        }
+        [data-layout="products"] > .acf-fc-layout-handle {
+            background-color: #3C896D !important;
+            color: white !important;
+        }
         label svg {
             width:100px;
         }
@@ -92,7 +115,7 @@ function my_layout_title($title, $field, $layout, $i)
     return $title;
 }
 
-//add_filter('acf/fields/flexible_content/layout_title', 'my_layout_title', 10, 4);
+add_filter('acf/fields/flexible_content/layout_title', 'my_layout_title', 10, 4);
 
 /* TINY MCE FORMAT */
 
@@ -120,6 +143,21 @@ function my_mce_before_init_insert_formats( $init_array ) {
                     'title' => 'Heading Font',
                     'inline' => 'span',
                     'classes' => 'heading-font'
+                ),
+                array(
+                    'title' => 'Starfish Font',
+                    'inline' => 'span',
+                    'classes' => 'starfish-font'
+                ),
+            )
+        ),
+        array(
+            'title' => 'Text Formats',
+            'items' => array(
+                array(
+                    'title' => 'Intro Text',
+                    'inline' => 'span',
+                    'classes' => 'intro'
                 ),
             )
         ),
@@ -176,49 +214,49 @@ function my_mce_before_init_insert_formats( $init_array ) {
                     'title' => 'Black Button',
                     'wrapper' => true,
                     'inline' => 'span',
-                    'classes' => 'button black'
+                    'classes' => 'button primary black'
                 ),
                 array(
                     'title' => 'White Button',
                     'wrapper' => true,
                     'inline' => 'span',
-                    'classes' => 'button white'
+                    'classes' => 'button primary white'
                 ),
                 array(
                     'title' => 'Green Button',
                     'wrapper' => true,
                     'inline' => 'span',
-                    'classes' => 'button pistachio'
+                    'classes' => 'button primary pistachio'
                 ),
                 array(
                     'title' => 'Yellow Button',
                     'wrapper' => true,
                     'inline' => 'span',
-                    'classes' => 'button supernova'
+                    'classes' => 'button primary supernova'
                 ),
                 array(
                     'title' => 'Orange Button',
                     'wrapper' => true,
                     'inline' => 'span',
-                    'classes' => 'button pizazz'
+                    'classes' => 'button primary pizazz'
                 ),
                 array(
                     'title' => 'Pink Button',
                     'wrapper' => true,
                     'inline' => 'span',
-                    'classes' => 'button cerise'
+                    'classes' => 'button primary cerise'
                 ),
                 array(
                     'title' => 'Purple Button',
                     'wrapper' => true,
                     'inline' => 'span',
-                    'classes' => 'button minsk'
+                    'classes' => 'button primary minsk'
                 ),
                 array(
                     'title' => 'Blue Button',
                     'wrapper' => true,
                     'inline' => 'span',
-                    'classes' => 'button curious-blue'
+                    'classes' => 'button primary curious-blue'
                 ),
             )
         )
@@ -233,7 +271,7 @@ add_filter( 'tiny_mce_before_init', 'my_mce_before_init_insert_formats' );
 
 // Method 1: Filter.
 function my_acf_google_map_api( $api ){
-    $api['key'] = 'AIzaSyDNIVftYn5q6tPwVlNhQ5NCN1dEaqGfhyA';
+    $api['key'] = 'AIzaSyCJBxNfl_FJ3noTrBZO3KCgSk2hhk5Sy0Y';
     return $api;
 }
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');

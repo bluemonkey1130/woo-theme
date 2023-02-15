@@ -21,10 +21,10 @@ if (!defined('ABSPATH')) {
 
 get_header('shop'); ?>
 <?php
-get_template_part('template-parts/content', 'hero');
+get_template_part('template-parts/content', 'product-hero');
 ?>
-<section class="grid-row gap-top-400">
-    <div class="grid wide grid-gap-400">
+<section id="single-breadcrumb" class="grid-row gap-top-400">
+    <div class="grid wide">
 
         <?php
         /**
@@ -39,8 +39,7 @@ get_template_part('template-parts/content', 'hero');
 </section>
 <?php
 ?>
-<section class="grid-row gap-top-400">
-    <div class="grid wide has-one-column grid-gap-400">
+<section id="single-product" >
 
         <?php while (have_posts()) : ?>
             <?php the_post(); ?>
@@ -49,7 +48,6 @@ get_template_part('template-parts/content', 'hero');
 
         <?php endwhile; // end of the loop. ?>
 
-    </div>
 </section>
 
 <?php

@@ -7,6 +7,16 @@
 /// your whole project.
 ///
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+@font-face {
+  font-family: 'starfishregular';
+  src: url('fonts/starfish-webfont.woff2') format('woff2'),
+  url('fonts/starfish-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root{
   --font-ratio: 1.3; // Adjust all other values
   --f0: 1rem;
@@ -16,12 +26,13 @@
   --f4: calc(var(--f3) * var(--font-ratio));
   --f5: calc(var(--f4) * var(--font-ratio));
   --f6: calc(var(--f5) * var(--font-ratio));
-  --f7: calc(var(--f6) * var(--font-ratio)); // Largest Value
+  --f7: calc(var(--f6) * var(--font-ratio));
   --f8: calc(var(--f7) * var(--font-ratio)); // Largest Value
 
   --heading-style: Sans-Serif;
   --body-style: Serif;
-  --heading-font: 'Helvetica', var(--heading-style);
+  --heading-font: 'lato', var(--heading-style);
+  --starfish-font: 'starfishregular', var(--heading-style);
   --body-font: 'Helvetica', var(--body-style);
   --heading-weight: 700;
   --body-weight: 400;

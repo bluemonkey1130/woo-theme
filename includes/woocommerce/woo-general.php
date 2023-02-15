@@ -1,6 +1,6 @@
 <?php
 
-//add_action('after_setup_theme', 'setup_woocommerce_support');
+add_action('after_setup_theme', 'setup_woocommerce_support');
 
 function setup_woocommerce_support()
 {
@@ -40,7 +40,19 @@ function abChangeProductsTitle() {
     echo '<h4 class="woocommerce-loop-product__title">' . get_the_title() . '</h4>';
 }
 
-add_action('woocommerce_single_product_summary', 'singleProducttitle', 10 );
-function singleProducttitle() {
-    echo '<h2 class="">' . get_the_title() . '</h2>';
+//add_action('woocommerce_single_product_summary', 'singleProducttitle', 10 );
+//function singleProducttitle() {
+//    echo '<h2 class="">' . get_the_title() . '</h2>';
+//}
+
+/**
+ * Change number of products that are displayed per page (shop page)
+ */
+add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 12 );
+
+function new_loop_shop_per_page( $cols ) {
+    // $cols contains the current number of products per page based on the value stored on Options –> Reading
+    // Return the number of products you wanna show per page.
+    $cols = 9;
+    return $cols;
 }

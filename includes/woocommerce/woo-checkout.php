@@ -1,37 +1,39 @@
 <?php
-function lab_add_passport_field($checkout)
-{
-    $current_user = wp_get_current_user();
-    $saved_passport_number = $current_user->lab_passport_no;
-    woocommerce_form_field(
-        'lab_passport_no',
-        array(
-            'type' => 'text',
-            'class' => array('form-row-wide'),
-            'label' => 'Passport Number',
-            'placeholder' => 'B02894567',
-            'required' => true,
-            'default' => $saved_passport_number
-        ),
-        $checkout->get_value('lab_passport_no')
+add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields');
 
+// Our hooked in function – $fields is passed via the filter!
+function custom_override_checkout_fields($fields)
+{
+    $fields['shipping']['shipping_phone'] = array(
+        'label' => __('Recipient contact number', 'woocommerce'),
+        'placeholder' => _x('Phone', 'placeholder', 'woocommerce'),
+        'required' => true,
+        'class' => array('form-row-wide'),
+        'clear' => true
     );
+
+    return $fields;
 }
 
-add_action('woocommerce_checkout_process', 'lab_validate_passport_field');
+//add_action( 'woocommerce_admin_order_data_after_shipping_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
+//
+//function my_custom_checkout_field_display_admin_order_meta($order){
+//    echo '<p><strong>'.__('Recipient contact number').':</strong> ' . get_post_meta( $order->get_id(), '_shipping_phone', true ) . '</p>';
+//}
 
-function lab_validate_passport_field()
-{
-    if (!$_POST['lab_passport_no']) {
-        wc_add_notice('Billing Passport Number is a required field. ', 'error');
+
+//Change the 'Billing details' checkout label to 'Contact Information'
+function wc_billing_field_strings( $translated_text, $text, $domain ) {
+    switch ( $translated_text ) {
+        case 'Billing details' :
+            $translated_text = __( 'Customer billing information', 'woocommerce' );
+            break;
     }
+    return $translated_text;
 }
+add_filter( 'gettext', 'wc_billing_field_strings', 20, 3 );
 
-add_action('woocommerce_checkout_update_order_meta', 'lab_save_passport_field');
-function lab_save_passport_field($order_id)
-{
+function checkout_form_shipping() {
+    echo '<h2>Recipient information</h2>';
 }
-
-if ($_POST['lab_passport_no']) {
-    update_post_meta($order_id, '_lab_passport_no', esc_attr($_POST['lab_passport_no']));
-}
+add_action( 'woocommerce_before_checkout_shipping_form', 'checkout_form_shipping'  );

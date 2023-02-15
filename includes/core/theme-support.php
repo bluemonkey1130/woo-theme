@@ -44,6 +44,24 @@ function rock_toffee_theme_support()
             'menu_title'  => __('Fonts'),
             'parent_slug' => $parent['menu_slug'],
         ));
+        // Add sub page.
+        acf_add_options_sub_page(array(
+            'page_title'  => __('Global Product Info'),
+            'menu_title'  => __('Global Product Info'),
+            'parent_slug' => $parent['menu_slug'],
+        ));
+        // Add sub page.
+        acf_add_options_sub_page(array(
+            'page_title'  => __('Search Page'),
+            'menu_title'  => __('Search Page'),
+            'parent_slug' => $parent['menu_slug'],
+        ));
+        // Add sub page.
+        acf_add_options_sub_page(array(
+            'page_title'  => __('Shipping Settings'),
+            'menu_title'  => __('Shipping Settings'),
+            'parent_slug' => $parent['menu_slug'],
+        ));
     }
 
 
@@ -80,6 +98,7 @@ function rock_toffee_theme_support()
 
     add_image_size('fourThree', 600, 400, true);
 
+    add_image_size('smallPortrait', 100, 130, true);
     add_image_size('portrait', 450, 600, true);
     add_image_size('largePortrait', 900, 1200, true);
 
@@ -104,7 +123,7 @@ function remove_extra_image_sizes() {
 //    remove_image_size( 'woocommerce_single' );
 //    remove_image_size( 'woocommerce_gallery_thumbnail' );
 //    remove_image_size( 'shop_catalog' );
-//    remove_image_size( 'shop_single' );
+    remove_image_size( 'shop_single' );
 //    remove_image_size( 'shop_thumbnail' );
     remove_image_size( '1536x1536' );
     remove_image_size( '2048x2048' );

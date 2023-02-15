@@ -1,23 +1,38 @@
+@use '../../_utilities/_mixins/media-query' as *;
+
 .featureBlock {
-  display: flex;
+  display: flex!important;
   grid-gap: inherit;
   justify-content: center;
   align-items: center;
-
+  flex-direction: column-reverse;
+  @include mq(tablet) {
+    >.stack{
+      text-align: center;
+    }
+  }
   &.left {
-    flex-direction: row-reverse;
+    @include mq-min(tablet) {
+      flex-direction: row-reverse;
+    }
   }
 
   &.right {
-    flex-direction: row;
+    @include mq-min(tablet) {
+      flex-direction: row;
+    }
   }
 
   &.top {
-    flex-direction: column;
+    @include mq-min(tablet) {
+      flex-direction: column;
+    }
   }
 
   &.bottom {
-    flex-direction: column-reverse;
+    @include mq-min(tablet) {
+      flex-direction: column-reverse;
+    }
   }
 
   .stack {

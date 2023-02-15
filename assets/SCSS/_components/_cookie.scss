@@ -118,7 +118,7 @@ button#ihavecookiesBtn {
 
     h5 {
       margin-bottom: var(--s-1);
-      font-size: clamp(var(--f0), 3vw, var(--f2))
+      font-size: min(max(var(--f0), 3vw), var(--f2));
     }
 
     ul {

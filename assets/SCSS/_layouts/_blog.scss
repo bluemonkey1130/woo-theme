@@ -1,0 +1,70 @@
+@use '../_utilities/_mixins/media-query' as *;
+
+#blog {
+  .grid {
+    article {
+      &#featured {
+        position: relative;
+        align-self: start;
+        figure {
+        }
+
+        .stack {
+
+          h5 {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color:var(--base-red);
+            font-weight:bold;
+          }
+
+        }
+      }
+    }
+
+    #list {
+      @include mq(tablet) {
+        &:before{
+          content: "";
+          width: 100%;
+          border-top: var(--base-grey) 2px solid;
+          display: inline-block;
+          margin-bottom: var(--s2);
+        }
+      }
+      h2 {
+      }
+
+      > div {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: var(--s1);
+
+        article {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          @include mq(tablet) {
+            grid-template-columns: 1fr;
+            h4{
+              font-size: min(max(var(--f2), 8vw), var(--f4));
+            }
+          }
+
+          grid-gap: var(--s1);
+          position: relative;
+          figure{
+
+          }
+          .stack{
+            h5 {
+              text-transform: uppercase;
+              font-size: 0.8rem;
+              color:var(--base-red);
+              font-weight:bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}

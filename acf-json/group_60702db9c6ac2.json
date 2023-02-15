@@ -6,6 +6,7 @@
             "key": "field_60702dbe701f9",
             "label": "Row Spacing",
             "name": "space_top",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -37,6 +38,7 @@
             "key": "field_60702e02701fa",
             "label": "Grid Gap",
             "name": "grid_gap",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -68,29 +70,29 @@
     "location": [
         [
             {
-                "param": "page_template",
-                "operator": "==",
-                "value": "page-templates\/page-flexible.php"
-            }
-        ],
-        [
-            {
                 "param": "page",
                 "operator": "==",
-                "value": "582"
+                "value": "6"
             }
         ],
         [
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "product"
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/page-flexible.php"
             }
         ]
     ],
-    "menu_order": 0,
+    "menu_order": 1,
     "position": "normal",
-    "style": "default",
+    "style": "seamless",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": [
@@ -99,5 +101,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1645192023
+    "modified": 1674881834
 }

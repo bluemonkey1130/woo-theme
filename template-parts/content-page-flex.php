@@ -1,7 +1,13 @@
 <?php
-$flexFields = get_field('row', $post->ID);
-$pageRowSpace = get_field('space_top', $post->ID);
-$pageGridGap = get_field('grid_gap', $post->ID);
+if (is_shop()) {
+    $page_id = wc_get_page_id('shop');
+} else {
+    $page_id = $post->ID;
+}
+$flexFields = get_field('row', $page_id);
+$pageRowSpace = get_field('space_top', $page_id);
+$pageGridGap = get_field('grid_gap', $page_id);
+$mapOnce = 0;
 
 
 if ($flexFields > 0) {
@@ -25,6 +31,39 @@ if ($flexFields > 0) {
         $rowLayout = $row['row_layout'] ?? '';
         $backgroundImage = $row['background_image'] ?? '';
         $anchorLabel = $row['admin_label'] ?? '';
+        $ignoreBreakpoints = $row['ignore_breakpoints'] ?? '';
+
+        //SLIDER SETTINGS
+        $sliderSettings = $row['slider_settings'] ?? '';
+        $slider = $sliderSettings['use_slider'] ?? '';
+        $slidesToShow = $sliderSettings['slides_to_show'] ?? '';
+        $autoPlay = $sliderSettings['autoplay'] ?? '';
+        $fade = $sliderSettings['fade'] ?? '';
+        $autoPlaySpeed = $sliderSettings['auto_play_speed'] ?? '';
+        $arrowsField = $sliderSettings['arrows'] ?? '';
+        $arrows = $arrowsField ? 'true' : 'false';
+        $breakpoint = $sliderSettings['screen_size'] ?? '';
+
+        if ($slider == 1) { ?>
+            <script>
+                let sliderBreakpoint = <?php echo $breakpoint?>;
+            </script>
+            <?php if ($fade === false) {
+                $slickString = "data-slick='{\"slidesToShow\": " . $slidesToShow . ", \"autoplay\": " . $autoPlay . ", \"autoplaySpeed\": " . $autoPlaySpeed . ", \"arrows\":  " . $arrows . "}'";
+            } elseif ($fade === true) {
+                $slickString = "data-slick='{\"slidesToShow\": 1, \"autoplay\": " . $autoPlay . ", \"fade\": true , \"infinite\": true, \"autoplaySpeed\": " . $autoPlaySpeed . ", \"arrows\": " . $arrows . "}'";
+            } ?>
+            <?php
+            $slickClass = 'flexSlider';
+            $slickNext = '<button type="button" id="next next-'.$key.'"><span>&raquo;</span></button>';
+            $slickPrev = '<button type="button" id="prev prev-'.$key.'"><span>&laquo;</span></button>';
+
+        } else {
+            $slickString = '';
+            $slickClass = '';
+            $slickNext = '';
+            $slickPrev = '';
+        }
 
         if ($row > 0) {
 
@@ -32,14 +71,25 @@ if ($flexFields > 0) {
                 case 'grid_layout': ?>
                     <section id="<?php echo sanitize_title($anchorLabel); ?>"
                              <?php if ($backgroundImage){ ?>style="background: url(<?php echo $backgroundImage['url']; ?>) center center/cover no-repeat"<?php } ?>
-                             class="grid-row <?php echo $rowSpace . ' ' . $rowColour . ' ' . $paddingTop . ' ' . $paddingBottom . ' ' . sanitize_title($row['acf_fc_layout']) ?>">
-                        <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>">
-                            <?php foreach ($row['content'] as $innerKey => $block) {
-                                switch ($block['acf_fc_layout']) {
+                             class="grid-row <?php echo $rowSpace . ' ' . $rowColour . ' ' . $paddingTop . ' ' . $paddingBottom . ' ' . sanitize_title($row['acf_fc_layout']); ?><?php if ($slider == 1) { ?> sliderWrapper<?php }?>">
+
+                        <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>
+                            <?php foreach ($ignoreBreakpoints as $breakpoint) {
+                            echo $breakpoint . ' ';
+                        } ?>
+                            ">
+                            <?php if ($slider == 1) { ?>
+                                <div class="<?php echo $slickClass. ' '.$rowLayout; ?>
+
+                            " <?php echo $slickString; ?>>
+                            <?php } ?>
+
+                                <?php foreach ($row['content'] as $innerKey => $block) {
+                                    switch ($block['acf_fc_layout']) {
                                     case 'text':
                                         ?>
                                         <div class="textBlock <?php echo $block['alignment'] . ' ' . $block['background_colour']; ?>
-                                <?php if ($block['block_padding']) {
+                                    <?php if ($block['block_padding']) {
                                             echo $block['padding_top'] . ' ' . $block['padding_bottom'] . ' ' . $block['padding_left'] . ' ' . $block['padding_right'];
                                         } ?>">
                                             <div class="stack">
@@ -68,93 +118,175 @@ if ($flexFields > 0) {
                                             </div>
 
                                         </div>
-                                        <?php break;
+                                    <?php break;
                                     case 'image' :
-                                        ?>
-                                        <figure class="imageBlock <?php ?>">
-                                            <?php
-                                            $image = $block['image_content'];
-                                            $imageCrop = $block['image_crop'];
-                                            echo wp_get_attachment_image($image['id'], $imageCrop, false, ["class" => "", "alt" => $image['alt']]);
-                                            ?>
+                                    $image = $block['image_content'];
+                                    $imageCrop = $block['image_crop'];
+                                    $useAsBackgroundImage = $block['use_as_background_image'];
+                                    $backgroundGroupSettings = $block['background_settings'];
+                                    $height = $backgroundGroupSettings['height'];
+                                    $style = $backgroundGroupSettings['style'];
+                                    if ($useAsBackgroundImage === true){ ?>
+                                        <div class="background-image <?php echo $style; ?>"
+                                             style="
+                                                     background: url(<?php echo wp_get_attachment_image_url($image['id'], $imageCrop); ?>) center center/cover no-repeat;
+                                                     height:<?php echo $height ?>px;">
+                                        </div>
+                                    <?php }else { ?>
+                                        <figure class="imageBlock">
+                                            <?php echo wp_get_attachment_image($image['id'], $imageCrop, false, ["class" => "", "alt" => $image['alt']]); ?>
                                         </figure>
-                                        <?php break;
-                                    case 'video':
-                                        $url = $block['video_content'];
-                                        parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
-                                        if ($url) {
-                                            ?>
-                                            <div class="popup-video"
-                                                 href="https://www.youtube.com/watch?v=<?php echo $my_array_of_vars['v'] ?>">
-                                                <img src="https://img.youtube.com/vi/<?php echo $my_array_of_vars['v']; ?>/0.jpg"
-                                                     alt="video">
-                                                <i class="fas fa-play-circle"></i>
-                                            </div>
+                                    <?php }
+                                    break;
+                                    case 'related_page': ?>
+                                    <?php
+                                    $featured_posts = $block['page'];
+                                    if ($featured_posts): ?>
 
-                                        <?php }
-                                    case 'location': ?>
-                                        <div class="map-wrapper" style="width: 100%; height: 500px;">
-                                            <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-                                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNIVftYn5q6tPwVlNhQ5NCN1dEaqGfhyA&callback=initmultipleMaps&libraries=&v=beta&map_ids=745fe24ebe33e9f4"
-                                                    defer></script>
-                                            <?php
-                                            $location = $block['location_content'];
-                                            $iconColor = $block['icon_colour'];
-                                            ?>
-                                            <div class="map">
-                                                <?php echo
-                                                    $location['lat'] . ',' .
-                                                    $location['lng'] . ',' .
-                                                    $location['zoom'] . ',' .
-                                                    'AIzaSyDNIVftYn5q6tPwVlNhQ5NCN1dEaqGfhyA' . ', ' .
-                                                    $iconColor . ',' .
-                                                    $location['address'] . ',';
-                                                ?>
+                                    <?php foreach ($featured_posts
+
+                                    as $featured_post):
+                                    $permalink = get_permalink($featured_post->ID);
+                                    $title = get_the_title($featured_post->ID);
+                                    $imageId = get_post_thumbnail_id($featured_post->ID);
+                                    ?>
+
+                                        <div class="fadeUp block <?php echo $block['acf_fc_layout']; ?> ">
+                                            <a class="abs" aria-label="View <?php echo $title; ?> Page"
+                                               href="<?php echo $permalink; ?>"></a>
+
+                                            <?php echo wp_get_attachment_image($imageId, 'medium', false, ["class" => "", "alt" => $title]); ?>
+                                            <div class="stack">
+                                                <h3><?php echo $title; ?></h3>
+                                                <?php if ($featured_post->post_excerpt) {
+                                                    $excerpt = wp_trim_words($featured_post->post_excerpt, $num_words = 20, $more = '...');
+                                                    ?>
+                                                    <p><?php echo $excerpt; ?></p>
+                                                <?php } ?>
                                             </div>
                                         </div>
-                                        <?php break;
-                                    case 'accordion': ?>
-                                        <?php if ($block['accordion_repeater']) { ?>
-                                            <div class="accordionBlock">
-                                                <div class="accordion">
-                                                    <?php foreach ($block['accordion_repeater'] as $accordion) {
-                                                        $accordionTitle = $accordion['accordion_title'];
-                                                        $accordionContent = $accordion['accordion_content'];
-                                                        ?>
-                                                        <div class="stack accordion-block">
-                                                            <div class="trigger stack">
-                                                                <?php echo $accordionTitle; ?>
-                                                                <i class="fas fa-plus icon-default"></i>
-                                                                <i class="fa fa-minus icon-active"></i>
-                                                            </div>
-                                                            <div class="draw stack stack-small">
-                                                                <?php echo $accordionContent; ?>
-                                                            </div>
-                                                        </div>
-                                                        <?php
-                                                    } ?>
 
-                                                </div>
+                                    <?php endforeach; ?>
+
+                                    <?php endif; ?>
+                                    <?php break;
+                                    case 'video':
+                                    $url = $block['video_content'];
+                                    parse_str(parse_url($url, PHP_URL_QUERY), $my_array_of_vars);
+                                    if ($url) {
+                                    ?>
+                                        <div class="popup-video">
+                                            <img src="https://img.youtube.com/vi/<?php echo $my_array_of_vars['v']; ?>/0.jpg">
+                                            <i class="fas fa-play-circle"></i>
+                                            <a class="js-modal-btn abs"
+                                               data-video-id="<?php echo $my_array_of_vars['v'] ?>"></a>
+
+                                        </div>
+
+
+                                    <?php }
+                                    break;
+                                    case 'location':
+
+                                    if ($mapOnce === 0) { ?>
+                                        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+                                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJBxNfl_FJ3noTrBZO3KCgSk2hhk5Sy0Y&callback=initMaps&libraries=&v=beta&map_ids=9a262de91ec9e38e"
+                                                defer></script>
+                                    <?php
+                                    $mapOnce = 1;
+                                    }
+                                    ?>
+                                        <div class="map-wrapper" style="width: 100%; height: 500px;">
+                                            <?php if ($block['maps']) {
+                                                if (count($block['maps']) === 1) { ?>
+                                                    <?php foreach ($block['maps'] as $mapKey => $map) {
+                                                        $location = $map['map'];
+                                                        $iconColor = $map['icon_colour']; ?>
+                                                        <div class="map">
+                                                            <?php echo $location['lat'] . ',' .
+                                                                $location['lng'] . ',' .
+                                                                $location['zoom'] . ',' .
+                                                                '9a262de91ec9e38e' . ', ' .
+                                                                $iconColor . ',' .
+                                                                $location['address'] . ','; ?>
+                                                        </div>
+                                                    <?php }
+                                                } elseif (count($block['maps']) > 1) {
+                                                    ?>
+                                                    <div id="map"
+                                                         style="width: 100%; height: 500px; grid-column: 1 / -1">
+                                                        <div class="map-info">
+                                                            <?php
+                                                            echo $block['maps'][0]['map']['zoom'] . ',' .
+                                                                '9a262de91ec9e38e' . ', ';
+                                                            ?>
+                                                        </div>
+                                                        <?php foreach ($block['maps'] as $map) {
+                                                            $location = $map['map'];
+                                                            $iconColor = $map['icon_colour']; ?>
+                                                            <div class="location">
+                                                                <?php echo $location['lat'] . ',' .
+                                                                    $location['lng'] . ',' .
+                                                                    $iconColor . ',' .
+                                                                    $location['address'] . ','; ?>
+                                                            </div>
+                                                        <?php } ?>
+                                                    </div>
+                                                <?php } ?>
+
+                                            <?php } ?>
+                                        </div>
+                                    <?php break;
+                                    case 'accordion': ?>
+                                    <?php if ($block['accordion_repeater']) { ?>
+                                        <div class="accordionBlock">
+                                            <div class="accordion">
+                                                <?php foreach ($block['accordion_repeater'] as $accordion) {
+                                                    $accordionTitle = $accordion['accordion_title'];
+                                                    $accordionContent = $accordion['accordion_content'];
+                                                    ?>
+                                                    <div class="stack accordion-block">
+                                                        <div class="trigger stack">
+                                                            <?php echo $accordionTitle; ?>
+                                                            <i class="fas fa-plus icon-default"></i>
+                                                            <i class="fa fa-minus icon-active"></i>
+                                                        </div>
+                                                        <div class="draw stack stack-small">
+                                                            <?php echo $accordionContent; ?>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                } ?>
+
                                             </div>
-                                            <?php
-                                        }
-                                        break;
+                                        </div>
+                                    <?php
+                                    }
+                                    break;
                                     case 'embed': ?>
                                         <div>
+                                            <?php
+                                            if ($block['text_area']) { ?>
+                                                <div class="stack gap-bottom-300">
+                                                    <?php echo $block['text_area']; ?>
+                                                </div>
+                                            <?php }
+                                            ?>
                                             <?php
                                             $type = $block['embed_type'];
                                             $raw = $block['raw_embed'];
                                             $shortCode = $block['shortcode_embed'];
-                                            if ($type == 'raw_embed') {
+                                            if ($type === false) {
                                                 echo $raw;
-                                            } elseif ($type == 'shortcode_embed') {
+                                            } elseif ($type === true) {
                                                 echo do_shortcode($shortCode);
                                             }
                                             ?>
                                         </div>
                                     <?php
+                                    break;
                                     case 'feature_text': ?>
-                                        <div class="featureBlock <?php echo $block['image_orientation'] . ' ' . $block['block_colour'] . ' ' . $block['padding'] ?>">
+                                        <div class="fadeIn featureBlock <?php echo $block['image_orientation'] . ' ' . $block['block_colour'] . ' ' . $block['padding'] ?>">
                                             <div class="stack">
                                                 <?php echo $block['text'];
                                                 $buttonRepeater = $block['button_repeater'];
@@ -185,11 +317,44 @@ if ($flexFields > 0) {
                                                 </figure>
                                             <?php } ?>
                                         </div>
-                                        <?php break;
-                                    default;
-                                }
-                            } ?>
+                                    <?php break;
+                                    case 'slides': ?>
+                                        <div class="slidesBlock">
+                                            <?php
+                                            foreach ($block['slides'] as $slides) {
+                                                echo wp_get_attachment_image($slides['slide_image']['id'], $block['image_crop'], false, ["class" => "", "alt" => $slides['slide_image']['alt']]);
+                                            }
+                                            ?>
+                                        </div>
+                                    <?php break;
+                                    case 'spacer':
+                                    $height = $block['height'];
+                                    $backgroundColour = $block['background_colour'];
+                                    $colourOptions = $block['colour_options'];
+                                    $brandColour = $colourOptions['brand_colours'];
+                                    $customColour = $colourOptions['custom'];
+                                    ?>
+                                        <div class="<?php echo $block['acf_fc_layout']; ?>
+                                        <?php if ($backgroundColour === true) {
+                                            echo $colourOptions['brand_colours'];
+                                        } ?>"
+                                             style="
+                                                     height:<?php echo $height; ?>px;
+                                             <?php if ($backgroundColour === true) { ?>
+                                                     background-color: <?php  echo $colourOptions['custom'];
+                                             } ?>">
+                                        </div>
+                                        <?php
+                                        break;
+                                        default;
+                                    }
+                                } ?>
+
+                            <?php if ($slider == 1) { ?>
+                                </div>
+                            <?php } ?>
                         </div>
+
                     </section>
                     <?php break;
                 case 'section_layout': ?>
@@ -198,7 +363,11 @@ if ($flexFields > 0) {
                                  class="grid-row <?php echo $rowSpace . ' ' . $rowColour . ' ' . $paddingTop . ' ' . $paddingBottom . ' ' . sanitize_title($row['acf_fc_layout']) ?>">
                             <?php switch ($block['acf_fc_layout']) {
                                 case 'products': ?>
-                                    <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>">
+                                    <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>
+                                        <?php foreach ($ignoreBreakpoints as $breakpoint) {
+                                            echo $breakpoint . ' ';
+                                        } ?>
+                                        ">
                                         <?php $selection = $block['selection_choice'];
                                         switch ($selection) {
                                             case 'all':
@@ -233,26 +402,22 @@ if ($flexFields > 0) {
                                         }
                                         if ($productLoop) {
                                             foreach ($productLoop as $key => $post) { ?>
-                                                <div class="stack card">
+                                                <div class="fadeUp stack card flex-products">
                                                     <figure>
                                                         <?php
                                                         $thumbnailID = get_post_thumbnail_id($post->ID);
                                                         if ($thumbnailID) {
-                                                            echo wp_get_attachment_image($thumbnailID, 'shop_thumbnail', false, ["class" => "", "alt" => $post->post_title]);
+                                                            echo wp_get_attachment_image($thumbnailID, 'portrait', false, ["class" => "", "alt" => $post->post_title]);
                                                         } else {
                                                             echo wc_placeholder_img();
                                                         }
                                                         ?>
-                                                        <a class="abs" href="<?php the_permalink(); ?>"></a>
                                                     </figure>
                                                     <h4><?php echo $post->post_title; ?></h4>
                                                     <?php $_product = wc_get_product($post->ID); ?>
-                                                    <p class="color-base-green"><?php echo wc_price($_product->get_price()) . ' /Per Day'; ?></p>
-                                                    <?php if ($post->post_excerpt) { ?>
-                                                        <?php shorten_product_excerpt() ?>
-                                                    <?php } ?>
-                                                    <a href="<?php the_permalink(); ?>" class="button primary">Read
-                                                        More</a>
+                                                    <p class="color-base-grey"><?php echo wc_price($_product->get_price()); ?></p>
+                                                    <a aria-label="View <?php echo $post->post_title; ?> Product Page"
+                                                       href="<?php the_permalink(); ?>" class="abs"></a>
 
                                                 </div>
                                                 <?php
@@ -260,55 +425,6 @@ if ($flexFields > 0) {
                                         }
                                         wp_reset_postdata();
                                         ?>
-                                    </div>
-                                    <?php break;
-                                case 'masonry' : ?>
-                                    <div class="grid masonry <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>">
-                                        <div class="grid-sizer"></div>
-                                        <?php foreach ($block['content'] as $tile) {
-                                            $contentType = $tile['content_type'];
-                                            $tileSize = $tile['tile_size'];
-                                            $tileColour = $tile['background_colour'];
-                                            $tilePadding = $tile['padding'];
-                                            switch (sanitize_title($tileSize)) {
-                                                case 'two-x-two':
-                                                case 'one-x-one':
-                                                    $crop = 'square500';
-                                                    break;
-                                                case 'one-x-two':
-                                                    $crop = 'square1000';
-                                                    break;
-                                                case 'two-x-one':
-                                                    $crop = 'largeportrait';
-                                                    break;
-                                            }
-                                            ?>
-                                            <div class="grid-item <?php echo $tileSize.' '.$contentType.' '.$tilePadding.' '.$tileColour; ?>">
-                                                <?php
-                                                switch ($contentType) {
-                                                    case'text': ?>
-                                                        <div class="item__content">
-                                                            <?php echo $tile['text']; ?>
-                                                        </div>
-                                                        <?php break;
-                                                    case'image': ?>
-                                                        <div class="item__content">
-                                                            <?php echo wp_get_attachment_image($tile['image']['id'], $crop, false, ["class" => "", "alt" => $tile['image']['alt']]); ?>
-                                                            <a class="gallery-item abs"
-                                                               href="<?php echo $tile['image']['url'] ?>" alt="<?php echo $tile['image']['alt']?>"></a>
-
-                                                        </div>
-
-                                                        <?php break;
-                                                    default;
-                                                }
-                                                ?>
-                                            </div>
-                                            <?php
-                                            ?>
-
-                                            <?php
-                                        } ?>
                                     </div>
                                     <?php break;
                                 default;

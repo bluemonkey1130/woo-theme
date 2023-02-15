@@ -3,13 +3,15 @@
     | Enqueue Stylesheet and JavaScript
 --------------------------------------------------*/
 
-
-
-
 function theme_enqueue()
 {
     $time = time();
-    wp_register_script('bundle', get_template_directory_uri() . '/assets/scripts.min.js', '', $time, true);
+    wp_register_script(
+        'bundle',
+        get_template_directory_uri() . '/assets/scripts.min.js',
+        array( 'jquery' ),
+        $time,
+        false);
 
     # Deregister the defaults and implement our stylesheets.
      wp_deregister_script( 'wp-embed' );

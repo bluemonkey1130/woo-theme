@@ -6,8 +6,6 @@ function removeWhitespace($buffer)
 
 ob_start('removeWhitespace');
 get_header();
-get_template_part('template-parts/content', 'hero');
-get_template_part('template-parts/content', 'page-flex');
 
 /* Start the Loop */
 while ( have_posts() ) :

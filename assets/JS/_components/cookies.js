@@ -9,21 +9,23 @@
         link: '/privacy-policy',
 
         onAccept: function () {
-            let myPreferences = $.fn.ihavecookies.cookie();
+
+            var myPreferences = $.fn.ihavecookies.cookie();
+
             if ($.fn.ihavecookies.preference('analytics') === true) {
-                document.cookie = 'ga-opt-out=false; expires=Thu, 31 Dec 2099 23:59:59 UTC; samesite=lax; path=/';
-            }else{
-                document.cookie = 'ga-opt-out=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; samesite=lax; path=/';
+                dataLayer.push({'event': 'analyticsConsentGiven'});
+
             }
             if ($.fn.ihavecookies.preference('marketing') === true) {
-                document.cookie = 'marketing-opt-out=false; expires=Thu, 31 Dec 2099 23:59:59 UTC; samesite=lax; path=/';
-            }else{
-                document.cookie = 'marketing-opt-out=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; samesite=lax; path=/';
+                dataLayer.push({'event': 'marketingConsentGiven'});
+
             }
-            if ($.fn.ihavecookies.preference('preferences') === true) { }
-            $("#cookie-wrapper").remove();
-            //page reload to fire analytics
-            location.reload();
+            if ($.fn.ihavecookies.preference('preferences') === true) {
+                dataLayer.push({'event': 'preferencesConsentGiven'});
+
+            }
+            $("#cookie-wrapper").hide();
+
         },
 
         uncheckBoxes: true,

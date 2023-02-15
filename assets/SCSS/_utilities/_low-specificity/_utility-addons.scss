@@ -2,9 +2,9 @@
 
 .grid-row:not(#hero){
   div[class*="bg"],section[class*="bg"],figure[class*="bg"] {
-    @include mq(tablet) {
-      padding: var(--s3);
-    }
+    //@include mq(tablet) {
+    //  padding: var(--s3);
+    //}
   }
 }
 //Orientation

@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "jquery-ui": "^1.12.1",
+    "modal-video": "^2.4.8",
     "slick-slider": "^1.8.2"
   }
 }

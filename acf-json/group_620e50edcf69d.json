@@ -6,6 +6,7 @@
             "key": "field_620e50f5f259e",
             "label": "Footer Row",
             "name": "footer_row",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -19,12 +20,14 @@
             "min": 0,
             "max": 0,
             "layout": "block",
-            "button_label": "",
+            "button_label": "Add Row",
+            "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_620ecfd6386b5",
                     "label": "Row Content",
                     "name": "",
+                    "aria-label": "",
                     "type": "tab",
                     "instructions": "",
                     "required": 0,
@@ -35,12 +38,14 @@
                         "id": ""
                     },
                     "placement": "top",
-                    "endpoint": 0
+                    "endpoint": 0,
+                    "parent_repeater": "field_620e50f5f259e"
                 },
                 {
                     "key": "field_620e5745f259f",
                     "label": "Blocks",
                     "name": "blocks",
+                    "aria-label": "",
                     "type": "flexible_content",
                     "instructions": "",
                     "required": 0,
@@ -61,6 +66,7 @@
                                     "key": "field_620e575af25a0",
                                     "label": "Navigation",
                                     "name": "navigation",
+                                    "aria-label": "",
                                     "type": "repeater",
                                     "instructions": "",
                                     "required": 0,
@@ -75,11 +81,13 @@
                                     "max": 0,
                                     "layout": "table",
                                     "button_label": "Add Nav Item",
+                                    "rows_per_page": 20,
                                     "sub_fields": [
                                         {
                                             "key": "field_620e5780f25a1",
                                             "label": "Link",
                                             "name": "link",
+                                            "aria-label": "",
                                             "type": "link",
                                             "instructions": "",
                                             "required": 0,
@@ -89,12 +97,14 @@
                                                 "class": "",
                                                 "id": ""
                                             },
-                                            "return_format": "array"
+                                            "return_format": "array",
+                                            "parent_repeater": "field_620e575af25a0"
                                         },
                                         {
                                             "key": "field_620e7a8cc7e1a",
                                             "label": "Link Text",
                                             "name": "link_text",
+                                            "aria-label": "",
                                             "type": "text",
                                             "instructions": "Override page title",
                                             "required": 0,
@@ -108,7 +118,8 @@
                                             "placeholder": "",
                                             "prepend": "",
                                             "append": "",
-                                            "maxlength": ""
+                                            "maxlength": "",
+                                            "parent_repeater": "field_620e575af25a0"
                                         }
                                     ]
                                 }
@@ -126,6 +137,7 @@
                                     "key": "field_620e5913f25a4",
                                     "label": "Logo",
                                     "name": "logo",
+                                    "aria-label": "",
                                     "type": "image",
                                     "instructions": "",
                                     "required": 0,
@@ -150,6 +162,7 @@
                                     "key": "field_620e64f8f25aa",
                                     "label": "Image Crop",
                                     "name": "image_crop",
+                                    "aria-label": "",
                                     "type": "select",
                                     "instructions": "",
                                     "required": 0,
@@ -187,6 +200,7 @@
                                     "key": "field_620e5927f25a5",
                                     "label": "Link",
                                     "name": "link",
+                                    "aria-label": "",
                                     "type": "link",
                                     "instructions": "",
                                     "required": 0,
@@ -212,6 +226,7 @@
                                     "key": "field_620e5945f25a7",
                                     "label": "Text",
                                     "name": "text",
+                                    "aria-label": "",
                                     "type": "wysiwyg",
                                     "instructions": "",
                                     "required": 0,
@@ -241,6 +256,7 @@
                                     "key": "field_620e5b06f25a9",
                                     "label": "Col Span",
                                     "name": "col_span",
+                                    "aria-label": "",
                                     "type": "select",
                                     "instructions": "",
                                     "required": 0,
@@ -272,12 +288,14 @@
                     },
                     "button_label": "Add Block",
                     "min": "",
-                    "max": ""
+                    "max": "",
+                    "parent_repeater": "field_620e50f5f259e"
                 },
                 {
                     "key": "field_620ecfc0386b4",
                     "label": "Row Settings",
                     "name": "",
+                    "aria-label": "",
                     "type": "tab",
                     "instructions": "",
                     "required": 0,
@@ -288,12 +306,14 @@
                         "id": ""
                     },
                     "placement": "top",
-                    "endpoint": 0
+                    "endpoint": 0,
+                    "parent_repeater": "field_620e50f5f259e"
                 },
                 {
                     "key": "field_620e8407861a0",
                     "label": "Row Settings",
                     "name": "row_settings",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -309,6 +329,7 @@
                             "key": "field_620e8414861a1",
                             "label": "Width",
                             "name": "width",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -319,17 +340,21 @@
                                 "id": ""
                             },
                             "choices": {
-                                "narrowest": "Narrowest",
-                                "narrow": "Narrow",
+                                "xxx-narrow": "xxx-narrow",
+                                "xx-narrow": "xx-narrow",
+                                "x-narrow": "x-narrow",
+                                "narrow": "narrow",
                                 "default": "Default",
-                                "align-wide": "Align Wide",
-                                "align-full": "Align Full"
+                                "wide": "wide",
+                                "x-wide": "x-wide",
+                                "xx-wide": "xx-wide",
+                                "xxx-wide": "xxx-wide"
                             },
                             "default_value": "default",
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
                             "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
                             "ajax": 0,
                             "placeholder": ""
                         },
@@ -337,6 +362,7 @@
                             "key": "field_620e8519b4078",
                             "label": "Row Layout",
                             "name": "row_layout",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -380,6 +406,7 @@
                             "key": "field_620e85ed895e6",
                             "label": "Grid Gap",
                             "name": "grid_gap",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -411,6 +438,7 @@
                             "key": "field_620e8633895e7",
                             "label": "Space Top",
                             "name": "space_top",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -438,12 +466,14 @@
                             "ajax": 0,
                             "placeholder": ""
                         }
-                    ]
+                    ],
+                    "parent_repeater": "field_620e50f5f259e"
                 },
                 {
                     "key": "field_620ecff5bad55",
                     "label": "Row Styling",
                     "name": "",
+                    "aria-label": "",
                     "type": "tab",
                     "instructions": "",
                     "required": 0,
@@ -454,12 +484,14 @@
                         "id": ""
                     },
                     "placement": "top",
-                    "endpoint": 0
+                    "endpoint": 0,
+                    "parent_repeater": "field_620e50f5f259e"
                 },
                 {
                     "key": "field_620ed0cf86571",
                     "label": "Row Styling",
                     "name": "row_styling",
+                    "aria-label": "",
                     "type": "group",
                     "instructions": "",
                     "required": 0,
@@ -475,6 +507,7 @@
                             "key": "field_620ed008bad56",
                             "label": "Row Colour",
                             "name": "row_colour",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -505,6 +538,7 @@
                             "key": "field_620ed05bbad57",
                             "label": "Padding Top",
                             "name": "padding_top",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -536,6 +570,7 @@
                             "key": "field_620ed06ebad58",
                             "label": "Padding Bottom",
                             "name": "padding_bottom",
+                            "aria-label": "",
                             "type": "select",
                             "instructions": "",
                             "required": 0,
@@ -567,6 +602,7 @@
                             "key": "field_620ed087bad59",
                             "label": "Background Image",
                             "name": "background_image",
+                            "aria-label": "",
                             "type": "image",
                             "instructions": "",
                             "required": 0,
@@ -587,7 +623,8 @@
                             "max_size": "",
                             "mime_types": ""
                         }
-                    ]
+                    ],
+                    "parent_repeater": "field_620e50f5f259e"
                 }
             ]
         }
@@ -610,5 +647,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1645138517
+    "modified": 1674435046
 }

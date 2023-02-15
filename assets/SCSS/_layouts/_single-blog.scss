@@ -1,0 +1,37 @@
+@use '../_utilities/_mixins/media-query' as *;
+
+#single-blog{
+  .grid{
+    @include mq-min(tablet) {
+      margin-bottom: var(--s3);
+    }
+    @include mq(phablet) {
+      grid-column-start: 1;
+      grid-column-end: 27;
+    }
+    #single-hero-image{}
+    #single-hero-text{
+      .stack{
+        background: #f5f5f5;
+        width: 100%;
+        justify-content: end;
+        padding: var(--s4);
+        @include mq-min(tablet) {
+          height: 60%;
+        }
+        h5 {
+          text-transform: uppercase;
+          font-size: 0.8rem;
+          color:var(--base-red);
+          font-weight:bold;
+        }
+        .read-time{
+          text-transform: uppercase;
+          font-size: 0.8rem;
+          color:var(--base-grey);
+          font-weight:bold;
+        }
+      }
+    }
+  }
+}

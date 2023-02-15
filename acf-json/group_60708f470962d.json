@@ -6,6 +6,7 @@
             "key": "field_60708f5b03937",
             "label": "Button Settings",
             "name": "button_settings",
+            "aria-label": "",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -21,6 +22,7 @@
                     "key": "field_60708f7803938",
                     "label": "Button Style",
                     "name": "button_style",
+                    "aria-label": "",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
@@ -49,6 +51,7 @@
                     "key": "field_6070902d03939",
                     "label": "Border Weight",
                     "name": "border_weight",
+                    "aria-label": "",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
@@ -78,6 +81,7 @@
                     "key": "field_607090630393a",
                     "label": "Button Font",
                     "name": "button_font",
+                    "aria-label": "",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
@@ -103,6 +107,7 @@
                     "key": "field_6070908c0393b",
                     "label": "Mobile Options",
                     "name": "mobile_options",
+                    "aria-label": "",
                     "type": "select",
                     "instructions": "",
                     "required": 0,
@@ -145,5 +150,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1643114183
+    "modified": 1674012429
 }

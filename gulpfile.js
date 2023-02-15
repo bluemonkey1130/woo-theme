@@ -47,14 +47,12 @@ function jsDeps(done) {
     const files = [
         "node_modules/jquery/dist/jquery.js",
         "node_modules/slick-carousel/slick/slick.min.js",
-        // "node_modules/gsap/dist/gsap.min.js",
-        // "node_modules/barba.js/dist/barba.min.js",
+        "node_modules/modal-video/js/jquery-modal-video.js",
         "./assets/JS/_vendor/jquery.ihavecookies.min.js",
         "./assets/JS/_vendor/jquery.magnific-popup.js",
-        "./assets/JS/_vendor/packery.js",
-        // "./assets/JS/_vendor/plyr.js",
-        "./assets/JS/_vendor/jquery-ui.js",
-        "./assets/JS/_vendor/isotope.pkgd.min.js",
+        "./assets/JS/_vendor/gsap.min.js",
+        "./assets/JS/_vendor/ScrollToPlugin.min.js",
+        "./assets/JS/_vendor/ScrollTrigger.min.js",
     ]
     return (
         src(files)
@@ -80,7 +78,7 @@ function jsConcat(done) {
         src(files)
             .pipe(plumber({errorHandler: onError}))
             .pipe(concat("scripts.min.js"))
-            .pipe(uglify())
+            // .pipe(uglify())
             .pipe(dest(jsPath.dest))
     )
 }
@@ -124,6 +122,7 @@ function scssProd() {
     return src(sassPath.src)
         .pipe(plumber({errorHandler: onError}))
         .pipe(sass().on('error', sass.logError))
+        .pipe(postcss([autoprefixer()]))
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(rename('index.css'))
         .pipe(dest(sassPath.dest))
@@ -134,7 +133,8 @@ exports.scssProd = scssProd
 /******** Watch Tasks *********/
 function watchStylesTask() {
     watch('assets/SCSS/**/*.scss',
-        series([scssTask]));
+        // series([scssTask]));
+        series([scssProd]));
 }
 
 exports.watchStyles = watchStylesTask
