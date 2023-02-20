@@ -61,7 +61,8 @@
     "slick-carousel": "^1.8.1"
   },
   "dependencies": {
-    "jquery-ui": "^1.12.1",
+    "jquery-datepicker": "^1.12.3",
+    "jquery-ui": "^1.13.2",
     "modal-video": "^2.4.8",
     "slick-slider": "^1.8.2"
   }

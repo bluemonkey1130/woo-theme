@@ -55,8 +55,8 @@ if ($flexFields > 0) {
             } ?>
             <?php
             $slickClass = 'flexSlider';
-            $slickNext = '<button type="button" id="next next-'.$key.'"><span>&raquo;</span></button>';
-            $slickPrev = '<button type="button" id="prev prev-'.$key.'"><span>&laquo;</span></button>';
+            $slickNext = '<button type="button" id="next next-' . $key . '"><span>&raquo;</span></button>';
+            $slickPrev = '<button type="button" id="prev prev-' . $key . '"><span>&laquo;</span></button>';
 
         } else {
             $slickString = '';
@@ -71,7 +71,7 @@ if ($flexFields > 0) {
                 case 'grid_layout': ?>
                     <section id="<?php echo sanitize_title($anchorLabel); ?>"
                              <?php if ($backgroundImage){ ?>style="background: url(<?php echo $backgroundImage['url']; ?>) center center/cover no-repeat"<?php } ?>
-                             class="grid-row <?php echo $rowSpace . ' ' . $rowColour . ' ' . $paddingTop . ' ' . $paddingBottom . ' ' . sanitize_title($row['acf_fc_layout']); ?><?php if ($slider == 1) { ?> sliderWrapper<?php }?>">
+                             class="grid-row <?php echo $rowSpace . ' ' . $rowColour . ' ' . $paddingTop . ' ' . $paddingBottom . ' ' . sanitize_title($row['acf_fc_layout']); ?><?php if ($slider == 1) { ?> sliderWrapper<?php } ?>">
 
                         <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>
                             <?php foreach ($ignoreBreakpoints as $breakpoint) {
@@ -79,10 +79,10 @@ if ($flexFields > 0) {
                         } ?>
                             ">
                             <?php if ($slider == 1) { ?>
-                                <div class="<?php echo $slickClass. ' '.$rowLayout; ?>
+                            <div class="<?php echo $slickClass . ' ' . $rowLayout; ?>
 
                             " <?php echo $slickString; ?>>
-                            <?php } ?>
+                                <?php } ?>
 
                                 <?php foreach ($row['content'] as $innerKey => $block) {
                                     switch ($block['acf_fc_layout']) {
@@ -92,7 +92,7 @@ if ($flexFields > 0) {
                                     <?php if ($block['block_padding']) {
                                             echo $block['padding_top'] . ' ' . $block['padding_bottom'] . ' ' . $block['padding_left'] . ' ' . $block['padding_right'];
                                         } ?>">
-                                            <div class="stack">
+                                            <div class="stack parentOrphanPrevent">
                                                 <?php echo $block['text_content']; ?>
                                                 <?php
                                                 $buttonRepeater = $block['button_repeater'];
@@ -287,7 +287,7 @@ if ($flexFields > 0) {
                                     break;
                                     case 'feature_text': ?>
                                         <div class="fadeIn featureBlock <?php echo $block['image_orientation'] . ' ' . $block['block_colour'] . ' ' . $block['padding'] ?>">
-                                            <div class="stack">
+                                            <div class="stack parentOrphanPrevent">
                                                 <?php echo $block['text'];
                                                 $buttonRepeater = $block['button_repeater'];
                                                 if ($buttonRepeater) {
@@ -350,9 +350,9 @@ if ($flexFields > 0) {
                                     }
                                 } ?>
 
-                            <?php if ($slider == 1) { ?>
-                                </div>
-                            <?php } ?>
+                                <?php if ($slider == 1) { ?>
+                            </div>
+                        <?php } ?>
                         </div>
 
                     </section>
@@ -365,8 +365,8 @@ if ($flexFields > 0) {
                                 case 'products': ?>
                                     <div class="grid <?php echo $rowLayout . ' ' . $rowWidth . ' ' . $gridGap; ?>
                                         <?php foreach ($ignoreBreakpoints as $breakpoint) {
-                                            echo $breakpoint . ' ';
-                                        } ?>
+                                        echo $breakpoint . ' ';
+                                    } ?>
                                         ">
                                         <?php $selection = $block['selection_choice'];
                                         switch ($selection) {
@@ -407,7 +407,17 @@ if ($flexFields > 0) {
                                                         <?php
                                                         $thumbnailID = get_post_thumbnail_id($post->ID);
                                                         if ($thumbnailID) {
-                                                            echo wp_get_attachment_image($thumbnailID, 'portrait', false, ["class" => "", "alt" => $post->post_title]);
+                                                            ?>
+                                                            <img src="<?php echo wp_get_attachment_image_url($thumbnailID, 'portrait') ?>"
+                                                                 srcset="<?php echo wp_get_attachment_image_url($thumbnailID, 'portrait') ?> 1920w,
+                                                                <?php echo wp_get_attachment_image_url($thumbnailID, 'portrait') ?> 1536w,
+                                                                <?php echo wp_get_attachment_image_url($thumbnailID, 'smallPortrait') ?> 768w,
+                                                                <?php echo wp_get_attachment_image_url($thumbnailID, 'smallPortrait') ?> 576w,
+                                                                <?php echo wp_get_attachment_image_url($thumbnailID, 'smallPortrait') ?> 384w,"
+                                                                 sizes="100vw"
+                                                                 alt="<?php echo $post->post_title; ?>"
+                                                            />
+                                                            <?php
                                                         } else {
                                                             echo wc_placeholder_img();
                                                         }

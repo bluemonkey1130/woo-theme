@@ -80,6 +80,16 @@ if ($heroSlides) {
                                      alt="<?php echo $image['alt']; ?>"
                                 />
                             <?php } else { ?>
+<!--                                <img id="else" class="hero-banner"-->
+<!--                                     src="--><?php //echo wp_get_attachment_image_url($image['id'], 'extraLarge') ?><!--"-->
+<!--                                     srcset="--><?php //echo wp_get_attachment_image_url($image['id'], 'extraLarge') ?><!-- 1920w,-->
+<!--                                    --><?php //echo wp_get_attachment_image_url($image['id'], 'mediumLarge') ?><!-- 1536w,-->
+<!--                                    --><?php //echo wp_get_attachment_image_url($image['id'], 'mediumLarge') ?><!-- 768w,-->
+<!--                                    --><?php //echo wp_get_attachment_image_url($image['id'], 'medium') ?><!-- 576w,-->
+<!--                                    --><?php //echo wp_get_attachment_image_url($image['id'], 'small') ?><!-- 384w,"-->
+<!--                                     sizes="100vw"-->
+<!--                                     alt="--><?php //echo $image['alt']; ?><!--"-->
+<!--                                />-->
                                 <img id="else" class="hero-banner"
                                      src="<?php echo wp_get_attachment_image_url($image['id'], 'extraLarge') ?>"
                                      srcset="<?php echo wp_get_attachment_image_url($image['id'], 'extraLarge') ?> 1920w,
@@ -90,16 +100,6 @@ if ($heroSlides) {
                                      sizes="100vw"
                                      alt="<?php echo $image['alt']; ?>"
                                 />
-<!--                                <img id="else" class="hero-banner"-->
-<!--                                     src="--><?php //echo wp_get_attachment_image_url($image['id'], 'extraLarge') ?><!--"-->
-<!--                                     srcset="--><?php //echo wp_get_attachment_image_srcset($image['id'], 'extraLarge') ?><!-- 1920w,-->
-<!--                                    --><?php //echo wp_get_attachment_image_srcset($image['id'], 'mediumLarge') ?><!-- 1536w,-->
-<!--                                    --><?php //echo wp_get_attachment_image_srcset($image['id'], 'mediumLarge') ?><!-- 768w,-->
-<!--                                    --><?php //echo wp_get_attachment_image_srcset($image['id'], 'medium') ?><!-- 576w,-->
-<!--                                    --><?php //echo wp_get_attachment_image_srcset($image['id'], 'small') ?><!-- 384w,"-->
-<!--                                     sizes="100vw"-->
-<!--                                     alt="--><?php //echo $image['alt']; ?><!--"-->
-<!--                                />-->
                                 <?php
                             }
                             break;
