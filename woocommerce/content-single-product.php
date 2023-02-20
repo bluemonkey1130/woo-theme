@@ -66,7 +66,7 @@ if (post_password_required()) {
                         <div class="productSliderMain inner-slider">
                             <img src="<?php echo $imageSrc[0]; ?>" alt="<?php echo $image_alt; ?>"/>
                             <?php foreach ($gallery_ids as $gallery_id) {
-                                echo wp_get_attachment_image($gallery_id, 'portrait', false);
+                                echo wp_get_attachment_image($gallery_id, 'largePortrait', false);
                             } ?>
                         </div>
                     </div>

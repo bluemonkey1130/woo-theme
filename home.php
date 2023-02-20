@@ -6,7 +6,24 @@ function removeWhitespace($buffer)
 
 ob_start('removeWhitespace');
 get_header();
+//phpinfo();
+//$order_id = 878; // Replace with the ID of the order you want to retrieve the item ID for
+//$order = wc_get_order( $order_id );
+//$items = $order->get_items();
+//
+//if ( ! empty( $items ) ) {
+//    $first_item = reset( $items );
+//    $order_item_id = $first_item->get_id();
+//    echo "Order Item ID: " . $order_item_id;
+//} else {
+//    echo "No items found in order";
+//}
 
+
+?>
+
+
+<?php
 
 $posts = new WP_Query(array(
     'post_type' => 'post',
