@@ -621,6 +621,13 @@
                 "operator": "==",
                 "value": "page-templates\/page-flexible.php"
             }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "wholesale-products.php"
+            }
         ]
     ],
     "menu_order": 2,
@@ -634,5 +641,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1675326792
+    "modified": 1690439538
 }

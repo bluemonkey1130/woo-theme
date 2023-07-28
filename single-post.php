@@ -31,7 +31,12 @@ get_header();
                 </div>
             </div>
         </section>
+
         <?php
+        $table_of_contents = generate_table_of_contents($post->ID); // Replace 123 with the ID of the page you want to generate the table of contents for
+        if ( ! empty( $table_of_contents ) ) {
+            echo $table_of_contents;
+        }
         get_template_part('template-parts/content-page-flex');
 
         $posts = new WP_Query(array(

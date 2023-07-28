@@ -17,6 +17,8 @@ require get_template_directory() . '/includes/custom/custom.php';
 require get_template_directory() . '/includes/custom/admin-styling.php';
 require get_template_directory() . '/includes/custom/default-pages.php';
 require get_template_directory() . '/includes/custom/parse-video.php';
+require get_template_directory() . '/includes/custom/table-of-contents.php';
+require get_template_directory() . '/includes/custom/user-roles.php';
 
 require get_template_directory() . '/includes/woocommerce/woo-general.php';
 require get_template_directory() . '/includes/woocommerce/woo-remove.php';
@@ -25,6 +27,7 @@ require get_template_directory() . '/includes/woocommerce/woo-styles.php';
 require get_template_directory() . '/includes/woocommerce/woo-product-add-ons.php';
 require get_template_directory() . '/includes/woocommerce/woo-single-product.php';
 require get_template_directory() . '/includes/woocommerce/woo-checkout.php';
+require get_template_directory() . '/includes/woocommerce/change-loop.php';
 
 
 function iconic_button_class( $class ) {

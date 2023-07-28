@@ -56,12 +56,6 @@ function rock_toffee_theme_support()
             'menu_title'  => __('Search Page'),
             'parent_slug' => $parent['menu_slug'],
         ));
-        // Add sub page.
-        acf_add_options_sub_page(array(
-            'page_title'  => __('Shipping Settings'),
-            'menu_title'  => __('Shipping Settings'),
-            'parent_slug' => $parent['menu_slug'],
-        ));
     }
 
 

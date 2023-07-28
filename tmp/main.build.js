@@ -662,6 +662,72 @@ var singleProductSettings = function () {
 })(jQuery); // Fully reference jQuery after this point
 
 
+var tableOfContentsSettings = function () {
+  var init = function init() {
+    $(document).ready(function () {
+      if ($('#single-blog').length) {
+        anchorHeadings();
+        pinTableOfContents();
+        showTableOfContents();
+      }
+    });
+  },
+      anchorHeadings = function anchorHeadings() {
+    var headings = document.querySelectorAll('.textBlock h1, .textBlock h2, .textBlock h3, .textBlock h4, .textBlock h5, .textBlock h6');
+    return Array.from(headings).map(function (heading, index) {
+      var id = heading.textContent.toLowerCase().replace(/ /g, '-');
+
+      if (!heading.id) {
+        heading.id = id;
+      }
+
+      return {
+        text: heading.textContent,
+        id: id
+      };
+    });
+  },
+      pinTableOfContents = function pinTableOfContents() {
+    var main = document.querySelector('main');
+    var toc = document.querySelector('.table-of-contents');
+    var header = document.querySelector('header');
+    ScrollTrigger.create({
+      trigger: toc,
+      start: function start() {
+        return "top top+=".concat(header.offsetHeight, "px");
+      },
+      endTrigger: main,
+      end: function end() {
+        return "bottom bottom-=".concat(toc.offsetHeight + main.offsetTop);
+      },
+      pin: toc,
+      pinSpacing: false
+    });
+  },
+      showTableOfContents = function showTableOfContents() {
+    var mm = gsap.matchMedia();
+    var tableHead = document.querySelector('.table-of-contents h3');
+    var tableBody = document.querySelector('.table-of-contents ul');
+    mm.add("(max-width: 1100px)", function () {
+      $(tableBody).hide();
+      $(tableHead).click(function () {
+        $(tableHead).toggleClass('active');
+        $(tableBody).slideToggle(500, "easeInOutQuad", function () {// Animation complete.
+        });
+      });
+      $(tableBody).click(function () {
+        $(tableBody).slideUp(500, "easeInOutQuad", function () {
+          $(tableHead).removeClass('active');
+        });
+      });
+    });
+  };
+
+  ;
+  init();
+  return {};
+}();
+
 var textTreatmentSettings = function () {
   var init = function init() {
     $(document).ready(function () {

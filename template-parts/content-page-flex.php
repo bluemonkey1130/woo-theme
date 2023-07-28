@@ -78,6 +78,7 @@ if ($flexFields > 0) {
                             echo $breakpoint . ' ';
                         } ?>
                             ">
+
                             <?php if ($slider == 1) { ?>
                             <div class="<?php echo $slickClass . ' ' . $rowLayout; ?>
 

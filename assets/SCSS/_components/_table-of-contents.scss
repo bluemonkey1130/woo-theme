@@ -1,0 +1,111 @@
+@use '../_utilities/_mixins/media-query' as *;
+.table-wrapper {
+  @include mq-min(medium-large) {
+    .table-of-contents {
+      background: rgba(255,255,255,0.8);
+      border-bottom-right-radius: 10px;
+      position: absolute;
+      max-width: 350px;
+      padding-right: var(--s1);
+
+      ul {
+        padding-left: 0 !important;
+        li{
+
+        }
+      }
+    }
+  }
+  @include mq(medium-large) {
+    nav.table-of-contents {
+      padding-left: 0;
+      h3 {
+        color: var(--light-main);
+        padding: var(--s1);
+        cursor: pointer;
+        background: var(--primary-main);
+        margin-bottom: 0;
+        &:after {
+          display: inline;
+          font-family: 'Font Awesome 5 Free';
+          content: '  \f078';
+          font-weight: 900;
+          position: absolute;
+          right: var(--s2);
+          padding: 0;
+          margin: 0;
+        }
+        &.active {
+          &:after {
+            content: '  \f077';
+          }
+        }
+      }
+      ul {
+        background: var(--primary-main);
+        margin-top: 0;
+        width: 100%;
+        padding-bottom:calc(var(--s1)/2);
+        li {
+          padding-left: var(--s1);
+          display: flex;
+          a {
+            color: var(--light-main);
+            font-size: var(--f1);
+            text-decoration: none;
+            padding: calc(var(--s1) / 2) 0 calc(var(--s1) / 2) calc(var(--s1) / 2);
+            display: inline-block;
+            width: 100%;
+          }
+          &:before {
+            display: inline;
+            font-family: 'Font Awesome 5 Free';
+            content: '  \f054';
+            font-weight: 900;
+            bottom: 0;
+            padding: 0;
+            margin: 0;
+            color: var(--light-main);
+          }
+        }
+      }
+    }
+  }
+  .table-of-contents {
+    z-index: 20;
+    padding-left: var(--s1);
+    h3 {
+      margin-bottom: 0;
+      padding: var(--s1) var(--s1) 0 0;
+      font-size: min(max(var(--f1), 2vw), var(--f3));
+
+    }
+    ul {
+      li {
+        border: none;
+        padding: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-size: min(max(var(--f0), 0vw), var(--f1));
+
+        a {
+          text-decoration: none;
+          padding: calc(var(--s1) / 2) 0 calc(var(--s1) / 2) calc(var(--s1) / 2);
+          display: inline-block;
+          width: 100%;
+        }
+
+        &:not(.heading):before {
+          display: inline;
+          font-family: 'Font Awesome 5 Free';
+          content: '  \f054';
+          font-weight: 900;
+          bottom: 0;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

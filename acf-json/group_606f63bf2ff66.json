@@ -3019,6 +3019,13 @@
                 "operator": "==",
                 "value": "13"
             }
+        ],
+        [
+            {
+                "param": "post_template",
+                "operator": "==",
+                "value": "wholesale-products.php"
+            }
         ]
     ],
     "menu_order": 3,
@@ -3032,5 +3039,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676114934
+    "modified": 1690439320
 }

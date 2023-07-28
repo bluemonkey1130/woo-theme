@@ -3,11 +3,11 @@
     "title": "Product Options",
     "fields": [
         {
-            "key": "field_63e8b1d705b2c",
-            "label": "Delivery Type\"",
-            "name": "delivery_type",
+            "key": "field_64c1cd6099a8e",
+            "label": "Wholesale Product",
+            "name": "wholesale_product",
             "aria-label": "",
-            "type": "radio",
+            "type": "true_false",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -17,16 +17,11 @@
                 "id": ""
             },
             "relevanssi_exclude": 0,
-            "choices": {
-                "courier": "Courier Delivery",
-                "post": "National Post"
-            },
-            "default_value": "",
-            "return_format": "value",
-            "allow_null": 0,
-            "other_choice": 0,
-            "layout": "vertical",
-            "save_other_choice": 0
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
         }
     ],
     "location": [
@@ -39,7 +34,7 @@
         ]
     ],
     "menu_order": 0,
-    "position": "normal",
+    "position": "side",
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
@@ -47,5 +42,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1676202654
+    "modified": 1690422673
 }
